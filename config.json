@@ -1,0 +1,31 @@
+{
+	"isFits": [
+		["brightnessQuartileForASinhBeta", "text", 0.75],
+		["asinhApplications", "text", 2],
+		["brightnessQuartileForASinhAlpha", "text", 0.25],
+		["ignore-starmask", "checkbox", false]
+	],
+	
+	"mainOptions": [
+		["groupOutputByInputImage", "checkbox", true],
+		["numOrientationFieldLevels", "text", 3],
+		["failWhenNoStarmaskFound", "checkbox", true],
+		["deleteClusterContainingCenter", "checkbox", true],
+		["clusSizeCutoff", "text", 150],
+		["fitUsingNonUsmIVals", "checkbox",true],
+		["allowArcBeyond2pi", "checkbox", true],
+		["useImageStandardization", "checkbox", true],
+		["resizeDims", "text", "'[256 256]'"],
+		["medFiltRad", "text", 1],
+		["unsharpMaskAmt", "text", 6],
+		["unsharpMaskSigma", "text", 25],
+		["useDeProjectStretch", "checkbox", true],
+		["fixToCenter", "checkbox", false],
+		["useTwoStageCtrFinding", "checkbox", true],
+		["lookForBulge", "checkbox", false],
+		["ctrDriftThresForStarMask", "text", 2.5],
+		["stopThres", "text", 0.15],
+		["mergeChkMinClusSz", "text", 25],
+		["errRatioThres", "text", 2.5]
+	]
+}

@@ -1,0 +1,119 @@
+#!/bin/sh
+USAGE="USAGE: `basename $0` [-convert-FITS] [-ignore-starmask] [-web] {inDir} {pngDir} {outDir} [other SpArcFiRe options]
+SpArcFiRe uses PNG images internally, but can mask stars only if original images are in FITS format.
+Note that all three directories must exist BEFORE you run SpArcFiRe.
+Files of type PNG in {inDir} are copied verbatim to pngDir.
+Files of type JPG in {inDir} are converted to PNG and put in pndDir.
+Files of type FITS in {inDir} are converted to PNG if -convert-FITS is specified, in which case PNGs and starmasks are put in pngDir.
+-ignore-starmask will ignore starmasks created during FITS conversion; default is to use them
+Default action (without options) is to assume starmarks and FITS conversion has occured and are in pngDir, and process all galaxies in *inDir*.
+You can skip FITS conversion once you've done it once, and images in pngDir will be re-used, but only galaxies appearing in inDir will actually be processed (even if they have images in pngDir).
+Final parsing images go in outDir, one output directory per galaxy.
+Current directory will have log files and final output CSVs called 'galaxy.csv' and 'galaxy_arcs.csv'."
+
+die() { echo "$USAGE
+FATAL ERROR: $@" >&2; exit 1
+}
+warn() { echo "WARNING: $@" >&2
+}
+
+STARMASK="_starmask.png"
+FITS=false
+WEB=false
+for i in "$@"
+do
+    case "$1" in
+    -ignore-starmask*) STARMASK="NONE"; shift;;
+    -convert-FITS) FITS=true; shift;;
+    -web) WEB=true; shift;;
+    -*) die "put [other SpArcFiRe options] AFTER the three directory names";;
+    *) break;;
+    esac
+done
+
+inDir="$1"; shift
+[ -d "$inDir" ] || die "inDir is missing"
+gunzip $inDir/*.gz 2>/dev/null
+
+pngDir="$1"; shift
+[ -d "$pngDir" ] || die "pngDir is missing"
+
+outDir="$1"; shift
+[ -d "$outDir" ] || die "outDir is missing"
+
+PATH=/home/wayne/.local/bin:/home/wayne/bin:$PATH
+export PATH
+ 
+# Make pngDir and outDir relative to CWD if necessary.
+case "$inDir" in
+    /*) ;;
+    *) inDir=`pwd`/$inDir;;
+esac
+case "$pngDir" in
+    /*) ;;
+    *) pngDir=`pwd`/$pngDir;;
+esac
+case "$outDir" in
+    /*) ;;
+    *) outDir=`pwd`/$outDir;;
+esac
+
+# Put starmask into pngDir
+$FITS && (
+    echo -n "Performing star masking on FITS images...";
+    if [ $STARMASK == NONE ]; then
+	echo "(they will be ignored later)"
+    else
+	echo ""
+    fi
+    cd /home/wayne/research/drdavis/ArcPNGcreator/star_removal
+    python2.7 remove_stars_with_sextractor.py "$inDir" "$pngDir"
+)
+
+# Now run FITStoPNG convesion, if requested
+$FITS && (echo "Converting FITS images to PNG..."; /home/wayne/research/drdavis/ArcPNGcreator/convertFromFits.sh $STARMASK $inDir $pngDir >convertFromFits.log)
+echo "Preparing PNG and JPG files to $pngDir..."
+for i in $inDir/*; do
+    case $i in
+    *.[Pp][Nn][Gg]) b=`echo $i | sed -e 's,.*/,,' -e 's/\.[Pp][Nn][Gg]$//'`; cp $i $pngDir/$b.png;;
+    *.[Ff][Ii][Tt][Ss]) b=`echo $i | sed -e 's,.*/,,' -e 's/\.[Ff][Ii][Tt][Ss]$//'`;
+	if [ ! -f $pngDir/$b.png ]; then warn "`basename $i`: no corresponding PNG file in pngDir"; fi;;
+    *.[Jj][Pp]*[Gg])  b=`echo $i | sed -e 's,.*/,,' -e 's/\.[Jj][Pp][eE]*[Gg]$//'`
+	if [ -f $i ] && echo "$i" | not fgrep -i '.fits'; then
+	    convert $i $pngDir/$b.png
+	fi;;
+    esac
+done
+
+ls $pngDir/*.png >/dev/null || die "can't find any png images in $pngDir;
+note that you must include an inDir (and it must exist) even if you start with PNG images."
+
+# Finally, run SpArcFiRe itself
+ls "$inDir" | sed -e 's/\.[Pp][Nn][Gg]$//' -e 's/\.[Jj][Pp][Ee]*[Gg]$//' -e 's/\.[Ff][Ii][Tt][Ss]$//' |
+    ( while read f; do
+	if [ -f $pngDir/${f}_starmask.png ]; then
+	    SM=$STARMASK
+	else
+	    SM='NONE'
+	    if [ "$STARMASK" != NONE -a -f "$inDir/${f}.fits" ]; then
+		warn "$f: you didn't ignore starmasks and there's a FITS image but no starmask; proceeding without starmask anyway"
+	    fi
+	fi
+	echo $pngDir $f .png $SM $outDir; done; echo exit) |
+    SpArcFiRe-stdin.sh -writeSettingsForEveryImage 1 "$@" | tee SpArcFiRe.log
+#    awk '{printf "'$pngDir' %s .png '$STARMASK' '$outDir'\n", $1}END{print "exit"}'
+
+# Now extract the CSV files
+arc2csv.sh $outDir/matout galaxy > arc2csv.log
+mv $outDir/matout/*.csv .
+for i in galaxy.csv galaxy_arcs.csv; do
+    csv2tsv $i > `basename $i .csv`.tsv
+done
+
+if $WEB; then (
+    cd $outDir
+    mkimgindex --scale 0.50 --make-thumbs */*-J_* | sed -e 's,/[^"]*,,' -e 's,/[^/]*),,' > index.html
+    ls "$inDir" | sed -e 's/\.[Pp][Nn][Gg]$//' -e 's/\.[Jj][Pp][Ee]*[Gg]$//' -e 's/\.[Ff][Ii][Tt][Ss]$//' |
+	awk '{printf "cd '$outDir'/%s; mkimgindex --no-thumbs *.png > index.html\n", $1}' | sh
+) fi
+
