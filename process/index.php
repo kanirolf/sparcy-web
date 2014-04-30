@@ -1,4 +1,6 @@
-<?php	
+<?php
+
+include $_SERVER["DOCUMENT_ROOT"].'/php/includes.php';
 
 /* todo:
  * - create something to store metadata about a processed image
