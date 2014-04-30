@@ -1,8 +1,6 @@
 <?php
 
-$accessLog = file_get_contents($_SERVER["DOCUMENT_ROOT"].'/access.log');
-$accessLog .= $_SERVER["REMOTE_ADDR"].' '.date("d-M-Y H:i:s", $_SERVER["REQUEST_TIME"])."\n";
-file_put_contents($_SERVER["DOCUMENT_ROOT"].'/access.log', $accessLog);
+include $_SERVER["DOCUMENT_ROOT"].'/php/includes.php';
 
 function input($name, $type, $value, $nameWrapper='', $label=''){
 	echo '<label id="'.$name.'">
