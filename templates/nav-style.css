@@ -1,0 +1,50 @@
+@CHARSET "UTF-8";
+
+#sparcfire-top-nav header {
+	
+	height: 100px;
+	width: 100%;
+	
+}
+
+	#sparcfire-top-nav header p {
+	
+		display: inline-block;
+		
+		padding: 20px 0;
+		margin: 0;
+		
+		width: 100%;
+		
+		font-size: 60px;
+		line-height: 60px;
+		text-align: center;
+	}
+
+#sparcfire-top-nav nav#steps {
+	
+		width: 100%;
+		height: 70px;	
+		
+		text-align: center;
+		
+		font-size: 25px;
+		line-height: 30px;
+		
+	}
+	
+		#sparcfire-top-nav nav#steps span {
+		
+			display: inline-block;
+			
+			padding: 10px 10px 30px 10px;
+			margin: 0 10px 0 10px;
+			
+		}
+		
+			#sparcfire-top-nav nav#steps span.active {
+			
+				background-color: #3E508C;
+				color: white;
+			
+			}
