@@ -150,3 +150,7 @@ else {
 	));
 }
 ?>
+<div id="content">
+	<span id="procMsg">processing image...</span>
+	<span id="procCrt">(this could take half a minute to two minutes depending upon the image; please be patient)</span>
+</div>
