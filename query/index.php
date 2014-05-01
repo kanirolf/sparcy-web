@@ -30,22 +30,7 @@ $config = json_decode(file_get_contents("config.json"));
 		<?php include $_TEMPLATES."/header.php" ?>
 	</head>
 	<body>
-		<header>
-			<p>SpArcFire <b>WebUI</b></p>
-		</header>
-		<nav id="steps">
-			<span class="query active">
-				create new query
-			</span>
-			&gt;
-			<span class="processing">
-				process
-			</span>
-			&gt;
-			<span class="results">
-				results
-			</span>
-		</nav>
+		<?php include $_TEMPLATES.'/nav.php' ?>
 		<section class="query step active">
 			<form method="POST" enctype="multipart/form-data" action="/process/index.php">
 				<label id="galaxyImage">
