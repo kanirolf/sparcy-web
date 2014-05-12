@@ -13,7 +13,10 @@ include $_SERVER["DOCUMENT_ROOT"].'/php/includes.php';
  */
 
 if (!count($_POST)){
-	header("Location: /");
+	if ($_SERVER['HTTP_REFERER'] == "")
+		header("Location: /");
+	else 
+		header("Location: ".$_SERVER['HTTP_REFERER']);
 	die();
 }
 
@@ -109,6 +112,7 @@ if ($exitCode)
 			));
 else {
 	
+
 	/* create a zip for the files. the zip will be created in /outDir
 	 * as galaxy_[imageId]_data.zip with two folders inside: images/
 	 * for the images and tables/ for the comma/tab separated value
@@ -131,7 +135,32 @@ else {
 	
 	$files->close();
 	
-	// generate an array of <img /> using each image in the output directory
+	/* generate associative array of image paths for displaying results
+	   associating display name to filename */
+	
+	$images = array();
+	
+	foreach(preg_grep("/[^.]+\.png/", scandir($imageData["outDir"].'/'.$imageData['name'])) as $image){
+		$suffix = array();
+		preg_match('/[^-]+-[A-Z]?_+([^.]+)\.png/', $image, $suffix);
+		$images[$suffix[1]] = '/process/'.$imageData["id"].'/outDir/'.$imageData["name"].'/'.$image;
+	}
+	
+	$output_info = fopen($imageData["location"], "w");
+	
+	fwrite($output_info, json_encode(array(	
+		"zip" => '/process/'.$imageData["id"].'/outDir/'.$zipName,
+		"images" => $images
+	)));
+	
+	returnProcessingState(true, "Image successfully processed.",
+		array(
+			"url" => "/results?query=".$imageData["id"]
+		)
+	);
+	
+}	
+	/*// generate an array of <img /> using each image in the output directory
 	
 	$images = array();
 	
@@ -143,14 +172,10 @@ else {
 	
 	returnProcessingState(true, "Image successfully processed.", 
 		array(
-			"image" => $imageData["name"].$imageData["ext"],
+			"image" => $imageData["name"].".".$imageData["ext"],
 			"images" => $images,
 			"zip_file" => '/process/'.$imageData["id"].'/outDir/'.$zipName,
 			"command" => $optionString
 	));
-}
+}*/
 ?>
-<div id="content">
-	<span id="procMsg">processing image...</span>
-	<span id="procCrt">(this could take half a minute to two minutes depending upon the image; please be patient)</span>
-</div>
