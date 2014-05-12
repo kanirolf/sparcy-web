@@ -3,16 +3,16 @@
 		<p>SpArcFire <b>WebUI</b></p>
 	</header>
 	<nav id="steps">
-		<span class="query active">
+		<a class="query active">
 			create new query
-		</span>
+		</a>
 		&gt;
-		<span class="processing">
+		<span class="process">
 			process
 		</span>
 		&gt;
-		<span class="results">
+		<a class="results">
 			results
-		</span>
+		</a>
 	</nav>
 </div>
