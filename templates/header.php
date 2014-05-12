@@ -2,8 +2,10 @@
 
 <title>SpArcFiRe Web Interface</title>
 
-<link href='http://fonts.googleapis.com/css?family=Dosis|Concert+One' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
 
+<link rel="stylesheet" href="/templates/normalize.css"/>
+<link rel="stylesheet" href="/templates/global.css" />
 <link rel="stylesheet" href="/templates/nav-style.css"/>
 <link rel="stylesheet" href="style.css" type="text/css">
 

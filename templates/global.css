@@ -1,0 +1,16 @@
+@charset UTF-8;
+
+body {
+	
+	background-color: #dce0ed;
+	
+	color: #543764;
+	font-family: 'Dosis', Helvetica, Arial, 'sans-serif';		
+	
+}
+
+a:hover {
+	
+	cursor: pointer;
+	
+}

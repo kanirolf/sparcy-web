@@ -33,7 +33,7 @@
 		
 	}
 	
-		#sparcfire-top-nav nav#steps span {
+		#sparcfire-top-nav nav#steps a, #sparcfire-top-nav nav#steps span {
 		
 			display: inline-block;
 			
@@ -42,9 +42,11 @@
 			
 		}
 		
-			#sparcfire-top-nav nav#steps span.active {
+			#sparcfire-top-nav nav#steps a.active,
+			#sparcfire-top-nav nav#steps span.active,
+			#sparcfire-top-nav nav#steps a:hover {
 			
 				background-color: #3E508C;
 				color: white;
 			
-			}
+			} 
