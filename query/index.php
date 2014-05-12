@@ -31,7 +31,7 @@ $config = json_decode(file_get_contents("config.json"));
 	</head>
 	<body>
 		<?php include $_TEMPLATES.'/nav.php' ?>
-		<div id="content">
+		<div class="content query active">
 			<form method="POST" enctype="multipart/form-data" action="/process/index.php">
 				<label id="galaxyImage">
 					<p>Select your file</p>
@@ -54,6 +54,10 @@ $config = json_decode(file_get_contents("config.json"));
 					<button>Submit</button>
 				</section>
 			</form>
+		</div>
+		<div class="content process">
+			<span id="procMsg">processing image...</span>
+			<span id="procCrt">(this could take half a minute to two minutes depending upon the image; please be patient)</span>
 		</div>
 	</body>
 </html>

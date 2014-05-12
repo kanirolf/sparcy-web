@@ -19,37 +19,33 @@ body {
 	
 }
 	
-	.disabled {
-	
-		opacity: 0.2;
-	
-	}
-	
-	
-	section.step header {
-	
-		height: 50px;
-		width: 100%;
-	
-	}
+.disabled {
 
-		section.step header p{
-		
-			font-size: 20px;
-			padding-left: 200px;
-			
-		}
+	opacity: 0.2;
+
+}
+
+div.content {
 	
+	background-color: white;
 	
-	div#content {
+	margin-bottom: 100px;
+
+}
+
+	div.content.active {
 	
-		background-color: white;
-		
-		margin-bottom: 100px;
+		display: block;
 	
 	}
+	
+	div.content:not(.active) {
 		
-		div#content form {
+		display: none;
+		
+	}
+		
+		div.content.query form {
 		
 			display: block;
 		
@@ -64,7 +60,7 @@ body {
 			
 		}
 		
-			div#content form label {
+			div.content.query form label {
 				
 				position: relative;
 				
@@ -79,7 +75,7 @@ body {
 				
 			}
 			
-				div#content form label p {
+				div.content.query form label p {
 				
 					position: relative;
 					
@@ -89,7 +85,7 @@ body {
 					
 				}
 				
-				div#content form label input {
+				div.content.query form label input {
 					
 					display: block;
 					
@@ -99,7 +95,7 @@ body {
 				
 				}
 			
-			div#content form input[type=text] {
+			div.content.query form input[type=text] {
 	
 				width: 75px;
 				
@@ -111,7 +107,7 @@ body {
 				text-align: center;
 			}
 		
-				div#content form section header {
+				div.content.query form section header {
 				
 					position: relative;
 				
@@ -128,7 +124,7 @@ body {
 					font-size: 30px;
 				}
 				
-				div#content form section.twoCol {
+				div.content.query form section.twoCol {
 				
 					position: relative;
 					
@@ -136,7 +132,7 @@ body {
 				
 				}
 				
-					div#content form section.twoCol div {
+					div.content.query form section.twoCol div {
 					
 						position: relative;
 					
@@ -144,36 +140,36 @@ body {
 					
 					}
 					
-						div#content form section.twoCol div.align-left {
+						div.content.query form section.twoCol div.align-left {
 						
 							float: left;
 							margin-left: 10px;
 							
 						}
 						
-						div#content form section.twoCol  div.align-right {
+						div.content.query form section.twoCol  div.align-right {
 						
 							float: right;
 							margin-right: 10px;
 							
 						}
 						
-						div#content form section.twoCol div.align-left label:nth-child(odd), 
-						div#content form section.twoCol div.align-right label:nth-child(even),
-						div#content form section.twoCol div.align-left label:nth-child(even) input[type=text], 
-						div#content form section.twoCol div.align-right label:nth-child(odd) input[type=text] {
+						div.content.query form section.twoCol div.align-left label:nth-child(odd), 
+						div.content.query form section.twoCol div.align-right label:nth-child(even),
+						div.content.query form section.twoCol div.align-left label:nth-child(even) input[type=text], 
+						div.content.query form section.twoCol div.align-right label:nth-child(odd) input[type=text] {
 							
 							background-color: #ddd
 							
 						}
 		
-		div#content section#isFits input#isFits {
+		div.content.query section#isFits input#isFits {
 		
 			display: none;
 		
 		}
 		
-		div#content section#submit button {
+		div.content.query section#submit button {
 		
 			position: relative;
 			
@@ -197,11 +193,39 @@ body {
 			
 		}
 		
-			div#content section#submit button:hover{
+			div.content.query section#submit button:hover{
 			
 				cursor: pointer;
 				
 				background-color: #ddd;
 				
 				color: #fff;
+			}
+	
+		div.content.process span {
+			
+			display: inline-block;
+			
+			width: 100%;
+
+			text-align: center;
+			
+		}
+			
+			div.content.process span#procMsg {
+			
+				margin: 15px 0 5px 0;
+			
+				font-size: 20px;
+				line-height: 20px;
+				
+			}
+			
+			div.content.process span#procCrt {
+			
+				margin: 5px 0 15px 0;
+			
+				font-size: 15px;
+				line-height: 15px;
+				
 			}

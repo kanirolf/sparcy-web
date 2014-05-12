@@ -26,11 +26,15 @@ $(document).ready(function(){
 		}
 	});
 
-	$("section.query form").submit(function(event){
-		$(".processing").addClass("active");
+	$("div.content.query form").submit(function(event){
+		$(".process").addClass("active");
 		$(".query").removeClass("active");
+		history.pushState({}, "", "/process");
+		$(window).bind("beforeunload", function(){
+			return "The image has not finished processing.";
+		});
 		event.preventDefault();
-		var queryData = new FormData($(this)[0]);		
+		var queryData = new FormData($(this)[0]);
 		$.ajax({
 			url: "/process/index.php",
 			type: "POST",
@@ -56,12 +60,12 @@ $(document).ready(function(){
 					);
 			} else {
 				alert(data['status']);
-				$(".query").addClass("active");	
+				$("div.content#query").addClass("active");	
 			}
 		}).fail(function(x, y, z){
 			alert(data['status']);
-			$(".processing").removeClass("active");
-			$(".results").addClass("active");
+			$("div.content#process").removeClass("active");
+			$("div.content#query").addClass("active");
 		});
 		return false;
 	});
