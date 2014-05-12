@@ -41,23 +41,15 @@ body {
 		}
 	
 	
-	section.step {
-	
-		display: none;
+	div#content {
 	
 		background-color: white;
 		
 		margin-bottom: 100px;
 	
 	}
-	
-	section.step.active {
-	
-		display: block;
-	
-	}
 		
-		section.step.query form {
+		div#content form {
 		
 			display: block;
 		
@@ -72,7 +64,7 @@ body {
 			
 		}
 		
-			section.step.query form label {
+			div#content form label {
 				
 				position: relative;
 				
@@ -87,7 +79,7 @@ body {
 				
 			}
 			
-				section.step.query form label p {
+				div#content form label p {
 				
 					position: relative;
 					
@@ -97,7 +89,7 @@ body {
 					
 				}
 				
-				section.step.query form label input {
+				div#content form label input {
 					
 					display: block;
 					
@@ -107,7 +99,7 @@ body {
 				
 				}
 			
-			section.step.query form input[type=text] {
+			div#content form input[type=text] {
 	
 				width: 75px;
 				
@@ -119,7 +111,7 @@ body {
 				text-align: center;
 			}
 		
-				section.step.query form section header {
+				div#content form section header {
 				
 					position: relative;
 				
@@ -136,7 +128,7 @@ body {
 					font-size: 30px;
 				}
 				
-				section.step.query form section.twoCol {
+				div#content form section.twoCol {
 				
 					position: relative;
 					
@@ -144,7 +136,7 @@ body {
 				
 				}
 				
-					section.step.query form section.twoCol div {
+					div#content form section.twoCol div {
 					
 						position: relative;
 					
@@ -152,36 +144,36 @@ body {
 					
 					}
 					
-						section.step.query form section.twoCol div.align-left {
+						div#content form section.twoCol div.align-left {
 						
 							float: left;
 							margin-left: 10px;
 							
 						}
 						
-						section.step.query form section.twoCol  div.align-right {
+						div#content form section.twoCol  div.align-right {
 						
 							float: right;
 							margin-right: 10px;
 							
 						}
 						
-						section.step.query form section.twoCol div.align-left label:nth-child(odd), 
-						section.step.query form section.twoCol div.align-right label:nth-child(even),
-						section.step.query form section.twoCol div.align-left label:nth-child(even) input[type=text], 
-						section.step.query form section.twoCol div.align-right label:nth-child(odd) input[type=text] {
+						div#content form section.twoCol div.align-left label:nth-child(odd), 
+						div#content form section.twoCol div.align-right label:nth-child(even),
+						div#content form section.twoCol div.align-left label:nth-child(even) input[type=text], 
+						div#content form section.twoCol div.align-right label:nth-child(odd) input[type=text] {
 							
 							background-color: #ddd
 							
 						}
 		
-		section.step.query section#isFits input#isFits {
+		div#content section#isFits input#isFits {
 		
 			display: none;
 		
 		}
 		
-		section.step.query section#submit button {
+		div#content section#submit button {
 		
 			position: relative;
 			
@@ -205,7 +197,7 @@ body {
 			
 		}
 		
-			section.step.query section#submit button:hover{
+			div#content section#submit button:hover{
 			
 				cursor: pointer;
 				
@@ -213,111 +205,3 @@ body {
 				
 				color: #fff;
 			}
-	
-		section.step.processing span {
-		
-			display: inline-block;
-			
-			width: 100%;
-
-			text-align: center;
-			
-		}
-			
-			section.step.processing span#procMsg {
-			
-				margin: 15px 0 5px 0;
-			
-				font-size: 20px;
-				line-height: 20px;
-				
-			}
-			
-			section.step.processing span#procCrt {
-			
-				margin: 5px 0 15px 0;
-			
-				font-size: 15px;
-				line-height: 15px;
-				
-			}
-		
-	section.step.results {
-	
-	}
-	
-		section.step.results div.container {
-		
-			display: block;
-		
-			position: relative;
-			left: 50%;
-		
-			width: 760px;
-		
-			padding: 20px;
-		
-			margin: 0 0 0 -400px;
-		
-		}
-		
-			section.step.results div.container header{
-		
-				display: inline-block;
-				float: left;		
-		
-				width: auto;
-		
-				margin: 10px 0;
-				
-				font-size: 30px;
-		
-			}
-			
-			section.step.results div.container a#download {
-		
-				display: inline-block;
-				float: right;
-		
-				margin: 15px 0;
-				padding: 5px;
-				
-				background-color: #543764;
-				
-				font-size: 20px;
-				color: #fff;
-				text-decoration: none;
-				
-			}
-			
-				section.step.results div.container a#download:hover {
-				
-					background-color: #fff;
-				
-					color: #543764;
-				
-				}
-			
-			section.step.results div.container div#resultImages {
-			
-				margin-top: 70px;
-			
-			} 
-			
-				section.step.results div.container div#resultImages figure.resultImage {
-				
-					display: inline-block;
-					
-					width: 225px;
-					height: 250px;
-					
-					margin: 20px 0 20px 21px;
-				
-				}
-				
-					section.step.results div.container div#resultImages figure.resultImage img {
-					
-						width: 100%;
-						height: auto;
-					
-					}
