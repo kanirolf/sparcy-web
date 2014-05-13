@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="/templates/normalize.css"/>
 <link rel="stylesheet" href="/templates/global.css" />
 <link rel="stylesheet" href="/templates/nav-style.css"/>
-<link rel="stylesheet" href="style.css" type="text/css">
+<?php if (file_exists("style.css")) echo '<link rel="stylesheet" href="style.css" type="text/css">' ?>
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="script.js"></script>
+<?php if (file_exists("script.js")) echo '<script src="script.js"></script>' ?>'
