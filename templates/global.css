@@ -9,8 +9,21 @@ body {
 	
 }
 
-a:hover {
+a {
 	
-	cursor: pointer;
+	color: #543764;
+	text-decoration: none;	
+}
+	
+	a:hover {
+		
+		cursor: pointer;
+		
+	}
+
+div.content {
+	
+	background-color: white;
+	margin-bottom: 100px;
 	
 }
