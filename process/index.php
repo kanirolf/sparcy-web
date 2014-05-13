@@ -145,14 +145,15 @@ else {
 	
 	$files->open($imageData["outDir"]."/".$zip_name, ZipArchive::CREATE);
 	
-	$files->addEmptyDir("images");
-	$files->addEmptyDir("tables");
+	$files->addFile($imageData["outDir"]."/galaxy_arcs.csv");
+// 	$files->addEmptyDir("images");
+// 	$files->addEmptyDir("tables");
 	
-	$files->addPattern("/[^.]+\.[ct]sv/", $imageData["outDir"], array(
-			"remove_all_path" => TRUE, "add_path" => "tables/"));
+// 	$files->addPattern("/[^.]+\.[ct]sv/", $imageData["outDir"], array(
+// 			"remove_all_path" => TRUE, "add_path" => "tables/"));
 	
-	$files->addPattern("/[^.]+\.png/", $imageData["outDir"]."/".$imageData["name"], array(
-			"remove_all_path" => TRUE, "add_path" => "images/"));
+// 	$files->addPattern("/[^.]+\.png/", $imageData["outDir"]."/".$imageData["name"], array(
+// 			"remove_all_path" => TRUE, "add_path" => "images/"));
 	
 	$files->close();
 	
