@@ -112,6 +112,28 @@ if ($exitCode)
 			));
 else {
 	
+	/* create a zip for the files. the zip will be created in /outDir
+	 * as galaxy_[imageId]_data.zip with two folders inside: images/
+	* for the images and tables/ for the comma/tab separated value
+	* tables.
+	*/
+	
+	$zipName = "galaxy_".$imageData["name"]."_data.zip";
+	$files = new ZipArchive;
+	
+	$files->open($imageData["outDir"]."/".$zipName, ZipArchive::CREATE);
+	
+	$files->addEmptyDir("images");
+	$files->addEmptyDir("tables");
+	
+	$files->addPattern("/[^.]+\.[ct]sv/", $imageData["outDir"], array(
+			"remove_all_path" => TRUE, "add_path" => "tables/"));
+	
+	$files->addPattern("/[^.]+\.png/", $imageData["outDir"]."/".$imageData["name"], array(
+			"remove_all_path" => TRUE, "add_path" => "images/"));
+	
+	$files->close();
+	
 	/* generate associative array of image paths for displaying results
 	   associating display name to filename */
 	
@@ -134,32 +156,9 @@ else {
 	
 	fclose($output_info);
 	
-	/* create a zip for the files. the zip will be created in /outDir
-	 * as galaxy_[imageId]_data.zip with two folders inside: images/
-	* for the images and tables/ for the comma/tab separated value
-	* tables.
-	*/
-	
-	$zipName = "galaxy_".$imageData["name"]."_data.zip";
-	$files = new ZipArchive;
-	
-	$files->open($imageData["outDir"]."/".$zip_name, ZipArchive::CREATE);
-	
-	$files->addFile($imageData["outDir"]."/galaxy_arcs.csv");
-// 	$files->addEmptyDir("images");
-// 	$files->addEmptyDir("tables");
-	
-// 	$files->addPattern("/[^.]+\.[ct]sv/", $imageData["outDir"], array(
-// 			"remove_all_path" => TRUE, "add_path" => "tables/"));
-	
-// 	$files->addPattern("/[^.]+\.png/", $imageData["outDir"]."/".$imageData["name"], array(
-// 			"remove_all_path" => TRUE, "add_path" => "images/"));
-	
-	$files->close();
-	
 	returnProcessingState(true, "Image successfully processed.",
 		array(
-			"url" => "/results?query=".$imageData["id"],
+			"url" => "/results?query=".$imageData["id"]
 		)
 	);
 	

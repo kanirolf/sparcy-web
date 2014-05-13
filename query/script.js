@@ -49,7 +49,6 @@ $(document).ready(function(){
 			$(".process").removeClass("active");
 			$(window).unbind("beforeunload");
 			data = JSON.parse(data);
-			console.log(data);
 			if (data['success'])
 				window.location = data["data"]['url'];
 			else {

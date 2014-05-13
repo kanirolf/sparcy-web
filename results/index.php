@@ -10,7 +10,7 @@
 			<div class="container">
 				<?php 
 					if(file_exists($_ROOT."/process/".$_GET["query"]."/info.json")){
-						$galaxyDetails = json_decode(file_get_contents("/process/".$_GET["query"]."/info.json"));
+						$galaxyDetails = json_decode(file_get_contents($_ROOT."/process/".$_GET["query"]."/info.json"));
 				?>
 				<header>
 					Results of processing:
