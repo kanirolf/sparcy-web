@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+	$(".query").addClass('active');
+	
 	$("input[type=checkbox]").each(function(){
 		this.checked = $(this).attr("value") == 1 ? true : false;
 		$(this).click(function(){
@@ -26,11 +28,15 @@ $(document).ready(function(){
 		}
 	});
 
-	$("section.query form").submit(function(event){
-		$(".processing").addClass("active");
+	$("div.content.query form").submit(function(event){
+		$(".process").addClass("active");
 		$(".query").removeClass("active");
+		history.pushState({}, "", "/process");
+		$(window).bind("beforeunload", function(){
+			return "The image has not finished processing.";
+		});
 		event.preventDefault();
-		var queryData = new FormData($(this)[0]);		
+		var queryData = new FormData($(this)[0]);
 		$.ajax({
 			url: "/process/index.php",
 			type: "POST",
@@ -40,28 +46,19 @@ $(document).ready(function(){
 	        contentType: false,
 	        processData: false
 		}).done(function(data, status, something){
-			$(".processing").removeClass("active");
-			console.log(data);
+			$(".process").removeClass("active");
+			$(window).unbind("beforeunload");
 			data = JSON.parse(data);
-			if (data['success']){
-				$(".results").addClass("active");
-				$("section.step.results a#download").attr("href", data['data']['zip_file']);
-				for(image in data['data']['images'])
-					$("section.step.results div.container div#resultImages").append(
-							$.parseHTML("<figure class=\"resultImage\">" +
-									data['data']['images'][image] +
-									"<figcaption>" + image + "</figcaption>" +
-									"</figure>"
-							)
-					);
-			} else {
+			if (data['success'])
+				window.location = data["data"]['url'];
+			else {
 				alert(data['status']);
-				$(".query").addClass("active");	
+				$("div.content#query").addClass("active");	
 			}
 		}).fail(function(x, y, z){
 			alert(data['status']);
-			$(".processing").removeClass("active");
-			$(".results").addClass("active");
+			$("div.content#process").removeClass("active");
+			$("div.content#query").addClass("active");
 		});
 		return false;
 	});

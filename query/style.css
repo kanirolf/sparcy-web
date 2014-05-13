@@ -18,94 +18,34 @@ body {
 	font-family: 'Dosis', Helvetica, Arial, 'sans-serif';		
 	
 }
+	
+.disabled {
 
-	body > header {
-		
-		height: 100px;
-		width: 100%;
-		
-	}
-	
-		body > header p {
-		
-			display: inline-block;
-			
-			padding: 20px 0;
-			margin: 0;
-			
-			width: 100%;
-			
-			font-size: 60px;
-			line-height: 60px;
-			text-align: center;
-		}
+	opacity: 0.2;
 
-	.disabled {
-	
-		opacity: 0.2;
-	
-	}
-	
-	nav#steps {
-	
-		width: 100%;
-		height: 70px;	
-		
-		text-align: center;
-		
-		font-size: 25px;
-		line-height: 30px;
-		
-	}
-	
-		nav#steps span {
-		
-			display: inline-block;
-			
-			padding: 10px 10px 30px 10px;
-			margin: 0 10px 0 10px;
-			
-		}
-		
-			nav#steps span.active {
-			
-				background-color: #3E508C;
-				color: white;
-			
-			}
+}
 
-	section.step header {
+div.content {
 	
-		height: 50px;
-		width: 100%;
+	background-color: white;
 	
-	}
+	margin-bottom: 100px;
 
-		section.step header p{
-		
-			font-size: 20px;
-			padding-left: 200px;
-			
-		}
-	
-	
-	section.step {
-	
-		display: none;
-	
-		background-color: white;
-		
-		margin-bottom: 100px;
-	
-	}
-	
-	section.step.active {
+}
+
+	div.content.active {
 	
 		display: block;
 	
 	}
+	
+	div.content:not(.active) {
 		
-		section.step.query form {
+		display: none;
+		
+	}
+		
+		div.content.query form {
 		
 			display: block;
 		
@@ -120,7 +60,7 @@ body {
 			
 		}
 		
-			section.step.query form label {
+			div.content.query form label {
 				
 				position: relative;
 				
@@ -135,7 +75,7 @@ body {
 				
 			}
 			
-				section.step.query form label p {
+				div.content.query form label p {
 				
 					position: relative;
 					
@@ -145,7 +85,7 @@ body {
 					
 				}
 				
-				section.step.query form label input {
+				div.content.query form label input {
 					
 					display: block;
 					
@@ -155,7 +95,7 @@ body {
 				
 				}
 			
-			section.step.query form input[type=text] {
+			div.content.query form input[type=text] {
 	
 				width: 75px;
 				
@@ -167,7 +107,7 @@ body {
 				text-align: center;
 			}
 		
-				section.step.query form section header {
+				div.content.query form section header {
 				
 					position: relative;
 				
@@ -184,7 +124,7 @@ body {
 					font-size: 30px;
 				}
 				
-				section.step.query form section.twoCol {
+				div.content.query form section.twoCol {
 				
 					position: relative;
 					
@@ -192,7 +132,7 @@ body {
 				
 				}
 				
-					section.step.query form section.twoCol div {
+					div.content.query form section.twoCol div {
 					
 						position: relative;
 					
@@ -200,36 +140,36 @@ body {
 					
 					}
 					
-						section.step.query form section.twoCol div.align-left {
+						div.content.query form section.twoCol div.align-left {
 						
 							float: left;
 							margin-left: 10px;
 							
 						}
 						
-						section.step.query form section.twoCol  div.align-right {
+						div.content.query form section.twoCol  div.align-right {
 						
 							float: right;
 							margin-right: 10px;
 							
 						}
 						
-						section.step.query form section.twoCol div.align-left label:nth-child(odd), 
-						section.step.query form section.twoCol div.align-right label:nth-child(even),
-						section.step.query form section.twoCol div.align-left label:nth-child(even) input[type=text], 
-						section.step.query form section.twoCol div.align-right label:nth-child(odd) input[type=text] {
+						div.content.query form section.twoCol div.align-left label:nth-child(odd), 
+						div.content.query form section.twoCol div.align-right label:nth-child(even),
+						div.content.query form section.twoCol div.align-left label:nth-child(even) input[type=text], 
+						div.content.query form section.twoCol div.align-right label:nth-child(odd) input[type=text] {
 							
 							background-color: #ddd
 							
 						}
 		
-		section.step.query section#isFits input#isFits {
+		div.content.query section#isFits input#isFits {
 		
 			display: none;
 		
 		}
 		
-		section.step.query section#submit button {
+		div.content.query section#submit button {
 		
 			position: relative;
 			
@@ -253,7 +193,7 @@ body {
 			
 		}
 		
-			section.step.query section#submit button:hover{
+			div.content.query section#submit button:hover{
 			
 				cursor: pointer;
 				
@@ -262,8 +202,8 @@ body {
 				color: #fff;
 			}
 	
-		section.step.processing span {
-		
+		div.content.process span {
+			
 			display: inline-block;
 			
 			width: 100%;
@@ -272,7 +212,7 @@ body {
 			
 		}
 			
-			section.step.processing span#procMsg {
+			div.content.process span#procMsg {
 			
 				margin: 15px 0 5px 0;
 			
@@ -281,7 +221,7 @@ body {
 				
 			}
 			
-			section.step.processing span#procCrt {
+			div.content.process span#procCrt {
 			
 				margin: 5px 0 15px 0;
 			
@@ -289,83 +229,3 @@ body {
 				line-height: 15px;
 				
 			}
-		
-	section.step.results {
-	
-	}
-	
-		section.step.results div.container {
-		
-			display: block;
-		
-			position: relative;
-			left: 50%;
-		
-			width: 760px;
-		
-			padding: 20px;
-		
-			margin: 0 0 0 -400px;
-		
-		}
-		
-			section.step.results div.container header{
-		
-				display: inline-block;
-				float: left;		
-		
-				width: auto;
-		
-				margin: 10px 0;
-				
-				font-size: 30px;
-		
-			}
-			
-			section.step.results div.container a#download {
-		
-				display: inline-block;
-				float: right;
-		
-				margin: 15px 0;
-				padding: 5px;
-				
-				background-color: #543764;
-				
-				font-size: 20px;
-				color: #fff;
-				text-decoration: none;
-				
-			}
-			
-				section.step.results div.container a#download:hover {
-				
-					background-color: #fff;
-				
-					color: #543764;
-				
-				}
-			
-			section.step.results div.container div#resultImages {
-			
-				margin-top: 70px;
-			
-			} 
-			
-				section.step.results div.container div#resultImages figure.resultImage {
-				
-					display: inline-block;
-					
-					width: 225px;
-					height: 250px;
-					
-					margin: 20px 0 20px 21px;
-				
-				}
-				
-					section.step.results div.container div#resultImages figure.resultImage img {
-					
-						width: 100%;
-						height: auto;
-					
-					}

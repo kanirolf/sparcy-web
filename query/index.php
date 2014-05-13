@@ -27,31 +27,11 @@ $config = json_decode(file_get_contents("config.json"));
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>SpArcFiRe Web Interface</title>
-		<link href='http://fonts.googleapis.com/css?family=Dosis|Concert+One' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="style.css" type="text/css">
-		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-		<script src="script.js"></script>
+		<?php include $_TEMPLATES."/header.php" ?>
 	</head>
 	<body>
-		<header>
-			<p>SpArcFire <b>WebUI</b></p>
-		</header>
-		<nav id="steps">
-			<span class="query active">
-				create new query
-			</span>
-			&gt;
-			<span class="processing">
-				process
-			</span>
-			&gt;
-			<span class="results">
-				results
-			</span>
-		</nav>
-		<section class="query step active">
+		<?php include $_TEMPLATES.'/nav.php' ?>
+		<div class="content query active">
 			<form method="POST" enctype="multipart/form-data" action="/process/index.php">
 				<label id="galaxyImage">
 					<p>Select your file</p>
@@ -74,22 +54,10 @@ $config = json_decode(file_get_contents("config.json"));
 					<button>Submit</button>
 				</section>
 			</form>
-		</section>
-		<section class="processing step">
+		</div>
+		<div class="content process">
 			<span id="procMsg">processing image...</span>
 			<span id="procCrt">(this could take half a minute to two minutes depending upon the image; please be patient)</span>
-		</section>
-		<section class="results step">
-			<div class="container">
-				<header>
-					Results of processing:
-				</header>
-				<a id="download" href="">
-					download results
-				</a>
-				<div id="resultImages">
-				</div>
-			</div>
-		</section>
+		</div>
 	</body>
 </html>

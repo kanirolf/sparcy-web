@@ -13,7 +13,10 @@ include $_SERVER["DOCUMENT_ROOT"].'/php/includes.php';
  */
 
 if (!count($_POST)){
-	header("Location: /");
+	if ($_SERVER['HTTP_REFERER'] == "")
+		header("Location: /");
+	else 
+		header("Location: ".$_SERVER['HTTP_REFERER']);
 	die();
 }
 
@@ -76,7 +79,7 @@ if (!move_uploaded_file($_FILES['galaxyImage']['tmp_name'], $imageData["file"]))
  the SpArcFiRe program located at /home/wayne/bin/ */
 
 // start with binary location
-$optionString .= '/home/wayne/bin/SpArcFiRe ';
+$optionString .= 'export MCR_CACHE_ROOT=/tmp && /home/wayne/bin/SpArcFiRe ';
 
 // if the image is a FITS, append FITS options
 if ($_POST["isFits"]["convert-FITS"] == "true")
@@ -111,14 +114,14 @@ else {
 	
 	/* create a zip for the files. the zip will be created in /outDir
 	 * as galaxy_[imageId]_data.zip with two folders inside: images/
-	 * for the images and tables/ for the comma/tab separated value
-	 * tables.
-	 */
+	* for the images and tables/ for the comma/tab separated value
+	* tables.
+	*/
 	
 	$zipName = "galaxy_".$imageData["name"]."_data.zip";
 	$files = new ZipArchive;
 	
-	$files->open($imageData["outDir"]."/".$zip_name, ZipArchive::CREATE);
+	$files->open($imageData["outDir"]."/".$zipName, ZipArchive::CREATE);
 	
 	$files->addEmptyDir("images");
 	$files->addEmptyDir("tables");
@@ -131,22 +134,33 @@ else {
 	
 	$files->close();
 	
-	// generate an array of <img /> using each image in the output directory
+	/* generate associative array of image paths for displaying results
+	   associating display name to filename */
 	
 	$images = array();
 	
 	foreach(preg_grep("/[^.]+\.png/", scandir($imageData["outDir"].'/'.$imageData['name'])) as $image){
 		$suffix = array();
 		preg_match('/[^-]+-[A-Z]?_+([^.]+)\.png/', $image, $suffix);
-		$images[$suffix[1]] = '<img src=\'/process/'.$imageData["id"].'/outDir/'.$imageData["name"].'/'.$image.'\' />';
+		$images[$suffix[1]] = '/process/'.$imageData["id"].'/outDir/'.$imageData["name"].'/'.$image;
 	}
+
+	// create a json file containing information on the galaxy results
 	
-	returnProcessingState(true, "Image successfully processed.", 
+	$output_info = fopen($imageData["location"]."/info.json", "w");
+	
+	fwrite($output_info, json_encode(array(	
+		"zip" => '/process/'.$imageData["id"].'/outDir/'.$zipName,
+		"images" => $images
+	)));
+	
+	fclose($output_info);
+	
+	returnProcessingState(true, "Image successfully processed.",
 		array(
-			"image" => $imageData["name"].$imageData["ext"],
-			"images" => $images,
-			"zip_file" => '/process/'.$imageData["id"].'/outDir/'.$zipName,
-			"command" => $optionString
-	));
+			"url" => "/results?query=".$imageData["id"]
+		)
+	);
+	
 }
 ?>
