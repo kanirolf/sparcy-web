@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+	$(".query").addClass('active');
+	
 	$("input[type=checkbox]").each(function(){
 		this.checked = $(this).attr("value") == 1 ? true : false;
 		$(this).click(function(){
@@ -44,21 +46,13 @@ $(document).ready(function(){
 	        contentType: false,
 	        processData: false
 		}).done(function(data, status, something){
-			$(".processing").removeClass("active");
-			console.log(data);
+			$(".process").removeClass("active");
+			$(window).unbind("beforeunload");
 			data = JSON.parse(data);
-			if (data['success']){
-				$(".results").addClass("active");
-				$("section.step.results a#download").attr("href", data['data']['zip_file']);
-				for(image in data['data']['images'])
-					$("section.step.results div.container div#resultImages").append(
-							$.parseHTML("<figure class=\"resultImage\">" +
-									data['data']['images'][image] +
-									"<figcaption>" + image + "</figcaption>" +
-									"</figure>"
-							)
-					);
-			} else {
+			console.log(data);
+			if (data['success'])
+				window.location = data["data"]['url'];
+			else {
 				alert(data['status']);
 				$("div.content#query").addClass("active");	
 			}
