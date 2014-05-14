@@ -82,8 +82,14 @@ if (!move_uploaded_file($_FILES['galaxyImage']['tmp_name'], $imageData["file"]))
 $optionString .= 'export MCR_CACHE_ROOT=/tmp && /home/wayne/bin/SpArcFiRe ';
 
 // if the image is a FITS, append FITS options
-if ($_POST["isFits"]["convert-FITS"] == "true")
-	$optionString .= " -convert-FITS ".($_POST["isFits"]["ignore-starmask"] ? "-ignore-starmask" : "")." ";
+if ($_POST["isFits"]["convert-FITS"] == "true"){
+	$optionString .= " -convert-FITS -p ";
+	foreach(array("brightnessQuartileForASinhAlpha", "brightnessQuartileForASinhBeta", "asinhApplications")
+		as $fitsOpt)
+		$optionString .= $_POST["isFits"][$fitsOpt]." "; 
+	foreach(array("compute-starmask", "ignore-starmask") as $fitsOpt)
+		$optionString .= $_POST["isFits"][$fitsOpt] == "true" ? "-".$fitsOpt." " : " ";
+}
 
 // add -web and directories
 
