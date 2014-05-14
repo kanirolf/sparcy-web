@@ -4,7 +4,8 @@
 		["asinhApplications", "text", 2, "centralAsinhBrightnessQuantile", "The central region of the brightness spectrum where the asinh transform will be linear; it will be logarithmic far from this region."],
 		["brightnessQuartileForASinhAlpha", "text", 0.25, "numAsinhApplications", "The number of times the asinh transform will be applied"],
 		["ignore-starmask", "checkbox", false, "ignore starmask", "We use SExtractor to create starmasks that are used during ellipse fitting of the galactic disk; SExtractor options may need to be changed for images sufficiently different from SDSS images. You may re-use previously computed starmasks by unchecking 'Compute', or ignore previously computed starmasks using 'Ignore...'"],
-		["compute-starmask", "checkbox", true, "compute starmask w/ SExtractor", "We use SExtractor to create starmasks that are used during ellipse fitting of the galactic disk; SExtractor options may need to be changed for images sufficiently different from SDSS images. You may re-use previously computed starmasks by unchecking 'Compute', or ignore previously computed starmasks using 'Ignore...'"]
+		["compute-starmask", "checkbox", true, "compute starmask w/ SExtractor", "We use SExtractor to create starmasks that are used during ellipse fitting of the galactic disk; SExtractor options may need to be changed for images sufficiently different from SDSS images. You may re-use previously computed starmasks by unchecking 'Compute', or ignore previously computed starmasks using 'Ignore...'"],
+		["convert-FITS", "input", "false"]
 	],
 	
 	"mainOptions": {
