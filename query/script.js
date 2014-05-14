@@ -54,14 +54,16 @@ $(document).ready(function(){
 	        contentType: false,
 	        processData: false
 		}).done(function(data, status, something){
-			$(".process").removeClass("active");
 			$(window).unbind("beforeunload");
 			data = JSON.parse(data);
+			console.log(data);
 			if (data['success'])
 				window.location = data["data"]['url'];
 			else {
 				alert(data['status']);
-				$("div.content#query").addClass("active");	
+				history.pushState(null, "", "/query");
+				$(".process").removeClass("active");
+				$(".query").addClass("active");	
 			}
 		}).fail(function(x, y, z){
 			alert(data['status']);
