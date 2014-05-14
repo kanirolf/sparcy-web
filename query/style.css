@@ -204,6 +204,13 @@ div.content {
 								
 							}
 	
+	
+			div.content.query section#isFits div.option#convert-FITS {
+			
+				display: none;
+			
+			} 
+	
 			div.content.query section#mainOptions section.level {
 			
 				margin-bottom: 0;
@@ -263,15 +270,13 @@ div.content {
 				
 						display: inline-block;
 					
-						margin-left: 30px;
+						margin-left: 10px;
 						
 					}
 									
 					div.content.query section#mainOptions section.level div.level-header span.expander {
 					
 						display: none;
-						
-						float: right;
 						
 						vertical-align: center;
 						

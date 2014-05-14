@@ -3,15 +3,16 @@
 include $_SERVER["DOCUMENT_ROOT"].'/php/includes.php';
 
 function input($name, $type, $value, $nameWrapper, $label='', $tooltip=''){
-	echo '<div class="option" title="'.($tooltip != '' ? $tooltip : '').'">
-		<label id="'.name.'">'.($label != '' ? $label : $name).'</label>
+	echo '<div class="option" title="'.($tooltip != '' ? $tooltip : '').'" id="'.$name.'">
+		<label>'.($label != '' ? $label : $name).'</label>
 		<input name="';
+		$wrapped = $name;
 		foreach ($nameWrapper as $wrapper){
 			echo $wrapper.'[';
-			$name .= "]";
+			$wrapped .= "]";
 		}
-		echo $name;
-		echo '"type="'.$type.'" id="'.$name.'"
+		echo $wrapped;
+		echo '"type="'.$type.'"
 		value="'.(gettype($value) == 'boolean' ? ($value == True ? 1 : 0) : $value).'" />';
 		/*if ($tooltip != '')
 			echo '<div class="tooltip">
@@ -52,7 +53,7 @@ $config = json_decode(file_get_contents("config.json"));
 					<header>
 						.fits to .png processing options
 					</header>
-					<?php createFieldGroup($config->isFits, ["isFits"]) ?>
+					<?php createFieldGroup($config->isFits, array("isFits")) ?>
 				</section>
 				<section id="mainOptions" class="disabled">
 					<header>
@@ -63,10 +64,10 @@ $config = json_decode(file_get_contents("config.json"));
 						echo '<section id="'.$level.'" class="twoCol level">';
 						if ($level != "easy")
 							echo '<div class="level-header">
-								<header>'.$level.'</header>
 								<span class="expander open">+</span><span class="expander close">-</span>
+								<header>'.$level.'</header>
 						</div>';
-						createFieldGroup($config->mainOptions->$level, ["mainOptions"]);
+						createFieldGroup($config->mainOptions->$level, array("mainOptions"));
 						echo '</section>';
 					} ?>
 				</section>
