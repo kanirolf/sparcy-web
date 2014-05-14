@@ -12,12 +12,18 @@
 					if(file_exists($_ROOT."/process/".$_GET["query"]."/info.json")){
 						$galaxyDetails = json_decode(file_get_contents($_ROOT."/process/".$_GET["query"]."/info.json"));
 				?>
-				<header>
-					Results of processing:
-				</header>
-				<a id="download" href="<?php echo $galaxyDetails->zip ?>">
-					download results
-				</a>
+				<div id="results-header">
+					<header>
+						Results of processing:
+					</header>
+					<a id="download" href="<?php echo $galaxyDetails->zip ?>">
+						download results
+					</a>
+				</div>
+				<div id="permalink-container">
+					<span id="permalink-label">Permalink:</span> 
+					<span id="permalink">http://sparcfire.ics.uci.edu<?php echo $_SERVER["REQUEST_URI"]?></span>
+				</div>
 				<div id="resultImages">
 					<?php foreach($galaxyDetails->images as $name => $image){
 						echo '<figure class="resultImage">

@@ -19,43 +19,70 @@ div.content.result {
 	
 	}
 	
-		div.content.result div.container header{
-	
-			display: inline-block;
-			float: left;		
-	
-			width: auto;
-	
-			margin: 10px 0;
-			
-			font-size: 30px;
-	
+		div.content.result div.container div.results-header {
+		
+			width: 100%;
+		
 		}
 		
-		div.content.result div.container a#download {
-	
-			display: inline-block;
-			float: right;
-	
-			margin: 15px 0;
-			padding: 5px;
+		
+			div.content.result div.container div#results-header header{
+		
+				display: inline-block;
+		
+				width: auto;
+		
+				margin: 10px 0;
+				
+				font-size: 30px;
+		
+			}
 			
-			background-color: #543764;
+			div.content.result div.container div#results-header a#download {
+		
+				display: inline-block;
+				float: right;
+		
+				margin: 15px 0;
+				padding: 5px;
+				
+				background-color: #543764;
+				
+				font-size: 20px;
+				color: #fff;
+				text-decoration: none;
+				
+			}
 			
-			font-size: 20px;
-			color: #fff;
-			text-decoration: none;
-			
+				div.content.result div.container div#results-header a#download:hover {
+				
+					background-color: #fff;
+				
+					color: #543764;
+				
+				}
+		
+		div.content.result div.container div#permalink-container {
+		
+			width: 100%;
+		
 		}
 		
-			div.content.result div.container a#download:hover {
-			
-				background-color: #fff;
-			
-				color: #543764;
+			div.content.result div.container div#permalink-container span#permalink-label{
+		
+				font-size: 20px;
 			
 			}
+			
+			div.content.result div.container div#permalink-container span#permalink{
 		
+				padding: 5px;
+				margin-left: 5px;
+				
+				border: 1px black solid;
+			
+			}
+
 		div.content.result div.container div#resultImages {
 		
 			margin-top: 70px;
