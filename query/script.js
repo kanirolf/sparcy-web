@@ -28,6 +28,14 @@ $(document).ready(function(){
 		}
 	});
 
+	$("div.content.query section#mainOptions section.level:not(easy) div.level-header").click(function(){
+		var parent = $(this).closest("section.level");
+		if ($(parent).hasClass("active"))
+			$(parent).removeClass("active");
+		else
+			$(parent).addClass("active");
+	});
+	
 	$("div.content.query form").submit(function(event){
 		$(".process").addClass("active");
 		$(".query").removeClass("active");

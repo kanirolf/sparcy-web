@@ -1,6 +1,6 @@
 <div id="sparcfire-top-nav">
 	<header>
-		<p>SpArcFire <b>WebUI</b></p>
+		<p>SpArcFiRe <b>WebUI</b></p>
 	</header>
 	<nav id="steps">
 		<a class="query" href="/query">

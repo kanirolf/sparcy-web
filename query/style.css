@@ -59,55 +59,96 @@ div.content {
 			margin: 0 0 0 -400px;
 			
 		}
+			
+			div.content.query form div#galaxyImage {
+			
+				position: relative;
+			
+				font-size: 20px;
+				
+				margin-bottom: 10px;
+				
+			}
+			
+				div.content.query form div#galaxyImage input[name=galaxyImage] {
+				
+					position: absolute;
+					right: 0;
+					
+					font-size: 15px;
+				
+				}
 		
-			div.content.query form label {
+			div.content.query form div.option {
 				
 				position: relative;
 				
-				display: block;
+				display: inline-block;
 				
 				overflow: hidden;
 				
 				border-radius: 10px;
 				padding: 5px;
 				
-				font-size: 20px;
+				font-size: 18px;
 				
 			}
 			
-				div.content.query form label p {
+				div.content.query form div.option label {
 				
 					position: relative;
 					
 					float: left;
 					
 					margin: 0;
+					margin-left: 5px;
 					
 				}
 				
-				div.content.query form label input {
+				div.content.query form div.option input {
 					
 					display: block;
 					
 					position: relative;
 					
 					float: right;
+					
+					vertical-align: center;
 				
 				}
 			
-			div.content.query form input[type=text] {
-	
-				width: 75px;
-				
-				border-radius: 5px;
-				border: 0;
+					div.content.query form div.option input[type=text] {
+			
+						width: 75px;
+						
+						border-radius: 5px;
+						border: 0;
+							
+						border-radius: 10px;
+			
+						text-align: center;
+					}
 					
-				border-radius: 10px;
-	
-				text-align: center;
-			}
-		
-				div.content.query form section header {
+				div.content.query form div.option div.tooltip {
+				
+					display: none;
+					position: absolute;
+					
+					top: 50px;
+					
+					background-color: #fff;
+					
+					border-radius: 5px;
+				
+				}
+				
+					div.content.query form div.option:hover div.tooltip {
+					
+						display: block;
+					
+					}
+				
+				div.content.query form section > header {
 				
 					position: relative;
 				
@@ -154,20 +195,108 @@ div.content {
 							
 						}
 						
-						div.content.query form section.twoCol div.align-left label:nth-child(odd), 
-						div.content.query form section.twoCol div.align-right label:nth-child(even),
-						div.content.query form section.twoCol div.align-left label:nth-child(even) input[type=text], 
-						div.content.query form section.twoCol div.align-right label:nth-child(odd) input[type=text] {
-							
-							background-color: #ddd
-							
+							div.content.query form section.twoCol div.align-left > div:nth-child(odd), 
+							div.content.query form section.twoCol div.align-right > div:nth-child(even),
+							div.content.query form section.twoCol div.align-left > div:nth-child(even) input[type=text], 
+							div.content.query form section.twoCol div.align-right > div:nth-child(odd) input[type=text] {
+								
+								background-color: #ddd;
+								
+							}
+	
+			div.content.query section#mainOptions section.level {
+			
+				margin-bottom: 0;
+			
+			}	
+			
+				div.content.query section#mainOptions section.level.active {
+			
+					margin-bottom: 10px;
+				
+				}
+				
+				div.content.query section#mainOptions section.level:last-child {
+				
+					margin-bottom: 0;
+				
+				}
+			
+				div.content.query section#mainOptions section.level div.level-header {
+				
+					position: relative;
+					width: 100%;
+					
+					font-size: 25px;
+					
+					border-radius: 10px;
+				}
+				
+					div.content.query section#mainOptions section.level div.level-header:hover {
+					
+						background-color: #ddd;
+						
+						color: #fff;
+						
+					}
+				
+					div.content.query section#mainOptions section.level.active div.level-header {
+					
+						margin-bottom: 10px;
+					
+					}
+									
+					div.content.query section#mainOptions section.level div.level-header > *,
+					div.content.query section#mainOptions section.level div.level-header {
+					
+						cursor: pointer;
+					
+					}
+					
+					div.content.query section#mainOptions section.level div.level-header > * {
+					
+						padding: 5px;
+					
+					}
+					
+					div.content.query section#mainOptions section.level div.level-header header{
+				
+						display: inline-block;
+					
+						margin-left: 30px;
+						
+					}
+									
+					div.content.query section#mainOptions section.level div.level-header span.expander {
+					
+						display: none;
+						
+						float: right;
+						
+						vertical-align: center;
+						
+					}
+					
+						div.content.query section#mainOptions section.level:not(.active) div.level-header span.expander.open,
+						div.content.query section#mainOptions section.level.active div.level-header span.expander.close {
+			
+							display: inline-block;
+		
 						}
-		
-		div.content.query section#isFits input#isFits {
-		
-			display: none;
-		
-		}
+										
+				div.content.query section#mainOptions section.level:not(#easy) div:not(.level-header){
+				
+					display: none;
+					
+				}
+				
+					div.content.query section#mainOptions section.level:not(#easy).active div:not(.level-header)
+					{
+					
+						display: block;
+						
+					}
+			
 		
 		div.content.query section#submit button {
 		
@@ -184,6 +313,7 @@ div.content {
 			margin-left: -100px;
 			
 			border: none;
+			border-radius: 10px;
 			
 			font-family: inherit;
 			font-size: 25px;
