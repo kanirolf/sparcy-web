@@ -1,39 +1,41 @@
 {
 	"isFits": [
-		["brightnessQuartileForASinhBeta", "text", 0.75, "brightnessCutoffQuantile", "Pixels below this brightness quantile will be be assumed 0."],
-		["asinhApplications", "text", 2, "centralAsinhBrightnessQuantile", "The central region of the brightness spectrum where the asinh transform will be linear; it will be logarithmic far from this region."],
-		["brightnessQuartileForASinhAlpha", "text", 0.25, "numAsinhApplications", "The number of times the asinh transform will be applied"],
+		["brightnessQuartileForASinhBeta", "text", 0.75, "lowerBrightnessCutoffQuantile", "Pixels below this brightness quantile will be be assumed 0."],
+		["asinhApplications", "text", 2, "numAsinhApplications", "The number of times the asinh transform will be applied. The brightness quantiles are recomputed for each transform."],
+		["brightnessQuartileForASinhAlpha", "text", 0.25, "linLogAsinhTransitionQuantile", "Image brightness quantile where the brightness transformation transitions from approximately linear to approximately logarithmic."],
 		["ignore-starmask", "checkbox", false, "ignore starmask", "We use SExtractor to create starmasks that are used during ellipse fitting of the galactic disk; SExtractor options may need to be changed for images sufficiently different from SDSS images. You may re-use previously computed starmasks by unchecking 'Compute', or ignore previously computed starmasks using 'Ignore...'"],
-		["compute-starmask", "checkbox", true, "compute starmask w/ SExtractor", "We use SExtractor to create starmasks that are used during ellipse fitting of the galactic disk; SExtractor options may need to be changed for images sufficiently different from SDSS images. You may re-use previously computed starmasks by unchecking 'Compute', or ignore previously computed starmasks using 'Ignore...'"],
+		["compute-starmask", "checkbox", true, "compute starmask w/ SExtractor", "We use SExtractor to create starmasks that are used during ellipse fitting of the galactic disk; SExtractor options may need to be changed for images sufficiently different from SDSS images. Star mask processing may currently take a long time at high resolution and/or with a large number of SExtractor-detected objects. You may re-use previously computed starmasks by unchecking 'Compute', or ignore previously computed starmasks using 'Ignore...'"],
 		["convert-FITS", "input", "false"]
 	],
 	
 	"mainOptions": {
 		"easy": [
-			["medFiltRad", "text", 1, "medianFilterRadius", "Median filter radius [pixels], to reduce image noise; use 0 to turn off."],
-			["groupOutputByInputImage", "checkbox", true, "", "Each galaxy gets its own output directory."],
+			["medFiltRad", "text", 1, "medianFilterRadius", "Median filter radius [pixels], to reduce image noise in the input image; use 0 to turn off; use 0 to turn off."],
 			["failWhenNoStarmaskFound", "checkbox", false, "", "Skip a galaxy if it's supposed to have a starmask but the starmask can't be found; normally if we can't find a starmask we proceed without it, which can make it difficult to isolate the galactic disk if there is, in fact, a bright star nearby."],
 			["ctrDriftThresForStarMask", "text", 2.5, "", "If the distance between the estimated galaxy center and the image center (in pixels) exceeds this number, the use of star masking is escalated, on the assumption that there is a bright star that is distracting us from finding the center of the galactic disk.  Note the galaxy should be at least this well centered in the input image."]
 		],
 		"advanced": [
 			["useDeProjectStretch", "checkbox", true, "", "Deprojects a tilted galaxy to make it appear face-on; turn off only if the galaxy is already close to face-on."],
-			["deleteClusterContainingCenter", "checkbox", true, "", "By default a cluster that contains the center cannot be an arm and so is deleted. Uncheck to turn this effect off."],
+			["deleteClusterContainingCenter", "checkbox", true, "", "A cluster that contains the center is more likely to be due to the bulge rather than a spiral arm. Consequently, such a cluster is deleted by default. Uncheck to turn this effect off."],
 			["allowArcBeyond2pi", "checkbox", true, "", "There's probably no reason to turn this off unless you see problems with arms longer than one rotation; if so, please notify the authors."],
 			["errRatioThres", "text", 2.5, "", "Tolerance for allowed error increase for the combined cluster when deciding whether to merge two clusters. Larger values are more lenient about allowing merges, but risk over-merging."],
-			["mergeChkMinClusSz", "text", 25, "", "Clusters are not considered merger candidates until they are at least this big (in pixels)."],
+			["mergeChkMinClusSz", "text", 25, "", "Fit error change is not checked in proposed merges until both clusters are at least this big (in pixels)."],
 			["clusSizeCutoff", "text", 150, "", "Minimum cluster area (in pixels) for inclusion in output."],
-			["stopThres", "text", 0.15, "", "Minimum orientation similarity [in radians?] needed in order to continue clustering; lower values give more cluster growth and merging."],
-			["unsharpMaskSigma", "text", 25, "unsharpMaskWidth", "Objects (arms or the space between them) smaller than this in the standardized image are blurred to insignificance; objects (arms or the space between them) this size or bigger will be detected."],
-			["unsharpMaskAmt", "text", 6, "unsharpMaskAmount", "This parameter effects the amount of contrast enhancement caused by the unsharp mask.  Larger values provide higher contrast."]
+			["stopThres", "text", 0.15, "", "Minimum orientation similarity needed in order to continue clustering; lower values give more cluster growth and merging."],
+			["unsharpMaskSigma", "text", 25, "unsharpMaskWidth", "Width of Gaussian blur to subtract from the image during unsharp masking. Objects (arms or the space between them) smaller than this in the standardized image are blurred to insignificance; objects (arms or the space between them) this size or bigger will be detected."],
+			["unsharpMaskAmt", "text", 6, "unsharpMaskAmount", "This parameter affects the amount of contrast enhancement caused by the unsharp mask.  Larger values provide higher contrast, but may amplify noise and increase clipping."],
+			["fixToCenter", "checkbox", false, "", "Whether to force the center of the fitted ellipse to remain exactly at the image center. Use only if you are sure that the input galaxy is exactly centered (or otherwise better centered than the centering given by our ellipse fit). Currently, this implicitly disables star masking; see ctrDriftThresForStarMask. Mutually exclusive with useTwoStageCtrFinding."],
+			["useTwoStageCtrFinding", "checkbox", true, "", "Attempt to increase accuracy of the fitted galaxy center by fitting it separately from the galaxy disk outline. The first ellipse fit is allowed to contract within the galaxy disk, stopping only when the center stabilizes (instead of considering other factors). Next, the fitted center is fixed for a second ellipse fit that determines the elliptical outline of the galaxy disk. Mutually exclusive with fixToCenter."],
+			["fitUsingNonUsmIVals", "checkbox",true, "fitUsingNonUsmIVals", "The logarithmic spiral arc fits are weighted by image brightness after brightness transformation. If checked, the weights will be taken from the pre-unsharp-mask brightness values rather than the post-unsharp-mask brightness values."]
 		],
 		"expert": [
 			["numOrientationFieldLevels", "text", 3, "","For images of size NxN, three orientation fields are generated at resolutions of full, half, and one-quarter N (default N=256). For resizeDims significantly larger, you may increase numOrienationFieldLevels, as long as the standardized image size is divisible by 2^numOrientationFieldLevels."],
-			["fitUsingNonUsmIVals", "checkbox",true],
-			["useImageStandardization", "checkbox", true, "", "Find the galactic disk and resize it to fit inside a square image of size resizeDims (default 256x256). Note that SpArcFiRe has been tuned for square 256x256 images. Use caution turning this off or changing resizeDims since image size impacts many other options,  If you change this option, be prepared to change many other options to get sensible results."],
-			["resizeDims", "text", "'[256 256]'", "", "Find the galactic disk and resize it to fit inside a square image of size resizeDims (default 256x256). Note that SpArcFiRe has been tuned for square 256x256 images. Use caution turning this off or changing resizeDims since image size impacts many other options,  If you change this option, be prepared to change many other options to get sensible results."],
-			["fixToCenter", "checkbox", false],
-			["useTwoStageCtrFinding", "checkbox", true],
+			["useImageStandardization", "checkbox", true, "", "Find the galactic disk and resize it to fit inside a square image of size resizeDims (default 256x256). Note that SpArcFiRe has been tuned for square 256x256 images. Use caution turning this off or changing resizeDims since image size impacts many other options. If you change this option, be prepared to change many other options to get sensible results."],
+			["resizeDims", "text", "'[256 256]'", "", "Find the galactic disk and resize it to fit inside a square image of size resizeDims (default 256x256). Note that SpArcFiRe has been tuned for square 256x256 images. Use caution turning this off or changing resizeDims since image size impacts many other options. If you change this option, be prepared to change many other options to get sensible results."],
 			["lookForBulge", "checkbox", false]
+		],
+		"_removed": [
+			["groupOutputByInputImage", "checkbox", true, "", "Each galaxy gets its own output directory."]
 		]
 	}
 }
