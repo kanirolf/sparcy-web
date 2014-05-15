@@ -14,10 +14,6 @@ function input($name, $type, $value, $nameWrapper, $label='', $tooltip=''){
 		echo $wrapped;
 		echo '"type="'.$type.'"
 		value="'.(gettype($value) == 'boolean' ? ($value == True ? 1 : 0) : $value).'" />';
-		/*if ($tooltip != '')
-			echo '<div class="tooltip">
-				'.($tooltip != '' ? $tooltip : '').'
-			</div>';*/
 		echo '</div>';
 }
 
