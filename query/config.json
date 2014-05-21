@@ -3,10 +3,9 @@
 		["brightnessQuartileForASinhBeta", "text", 0.75, "lowerBrightnessCutoffQuantile", "Pixels below this brightness quantile will be be assumed 0."],
 		["asinhApplications", "text", 2, "numAsinhApplications", "The number of times the asinh transform will be applied. The brightness quantiles are recomputed for each transform."],
 		["brightnessQuartileForASinhAlpha", "text", 0.25, "linLogAsinhTransitionQuantile", "Image brightness quantile where the brightness transformation transitions from approximately linear to approximately logarithmic."],
-		["ignore-starmask", "checkbox", false, "ignore starmask", "We use SExtractor to create starmasks that are used during ellipse fitting of the galactic disk; SExtractor options may need to be changed for images sufficiently different from SDSS images. You may re-use previously computed starmasks by unchecking 'Compute', or ignore previously computed starmasks using 'Ignore...'"],
-		["compute-starmask", "checkbox", true, "compute starmask w/ SExtractor", "We use SExtractor to create starmasks that are used during ellipse fitting of the galactic disk; SExtractor options may need to be changed for images sufficiently different from SDSS images. Star mask processing may currently take a long time at high resolution and/or with a large number of SExtractor-detected objects. You may re-use previously computed starmasks by unchecking 'Compute', or ignore previously computed starmasks using 'Ignore...'"],
-		["convert-FITS", "input", "false"]
-	],
+		["ignore-starmask", "checkbox", false, "ignore-starmask", "We use SExtractor to create starmasks that are used during ellipse fitting of the galactic disk; SExtractor options may need to be changed for images sufficiently different from SDSS images. You may re-use previously computed starmasks by unchecking 'Compute', or ignore previously computed starmasks using 'Ignore...'"],
+		["compute-starmask", "checkbox", true, "compute-starmask-with-SExtractor", "We use SExtractor to create starmasks that are used during ellipse fitting of the galactic disk; SExtractor options may need to be changed for images sufficiently different from SDSS images. Star mask processing may currently take a long time at high resolution and/or with a large number of SExtractor-detected objects. You may re-use previously computed starmasks by unchecking 'Compute', or ignore previously computed starmasks using 'Ignore...'"]
+		],
 	
 	"mainOptions": {
 		"easy": [

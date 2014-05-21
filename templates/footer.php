@@ -1,0 +1,1 @@
+<footer> <span id="info-wrapper">Please contact Wayne Hayes <a href="mailto:whayes@uci.edu">(whayes@uci.edu)</a> for questions or comments.  <a href="http://arxiv.org/abs/1402.1910">See our paper here</a> for details about SpArcFiRe.</span></footer>

@@ -1,85 +1,334 @@
-@charset UTF-8;
-
-html, body {
-	
-	height: 100%;
-	width: 100%;
-	
-	margin: 0;
-	padding: 0;
-	
-}
-
-body {
-	
-	background-color: #dce0ed;
-	
-	color: #543764;
-	font-family: 'Dosis', Helvetica, Arial, 'sans-serif';		
-	
-}
-	
 .disabled {
 
 	opacity: 0.2;
 
 }
 
-div.content {
+div.warning {
 	
-	background-color: white;
+	margin: 0 0 20px 0;
+	padding: 10px;
 	
-	margin-bottom: 100px;
+	background-color: #eee;
 
+}	
+	
+div#steps-container {
+	
+	width: 100%;
+	height: 50px;
+	
+	background-color: lightgrey;
+	
 }
+	div#steps-container ul#steps {
+	
+		position: relative;
+		
+		left: 50%;
+		
+		width: 810px;
+		height: 50px;
+		
+		margin: 0;
+		margin-left: -400px;
+		padding: 0;
 
-	div.content.active {
-	
-		display: block;
-	
 	}
 	
-	div.content:not(.active) {
+		div#steps-container ul#steps li.step {
 		
-		display: none;
-		
-	}
-		
-		div.content.query form {
-		
-			display: block;
-		
+			display: none;
 			position: relative;
-			left: 50%;
-		
-			width: 760px;
-		
-			padding: 20px;
-		
-			margin: 0 0 0 -400px;
+			
+			width: 200px;
+			height: 40px;
+			
+			padding-top: 10px;
+			background-color: lightgrey;
+			
+			font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
+			font-size: 20px;
+			font-weight: 300;
+			color: grey;
+			text-align: center;
+			vertical-align: middle;
 			
 		}
+			div#steps-container ul#steps li.step.visited {
+				
+				display: inline-block;
+				
+				cursor: pointer;
+			}
+				
+				div#steps-container ul#steps li.step.visited:not(.active):not(.disabled):hover {
+				
+					opacity: 0.5;	
+					
+				}
+		
+			div#steps-container ul#steps li.step.active {
 			
-			div.content.query form div#galaxyImage {
+				display: inline-block;
+				
+				background-color: #eee;
+				
+				font-weight: 400;
+				color: lightslategrey;
+			}
 			
-				position: relative;
+			div#steps-container ul#steps li.step.active div.arrow {
+				
+				position: absolute;
+				
+				bottom: 0;
+				left: 50%;
+			
+				margin-left: -12px;
+			
+				border-bottom: 12px solid white;
+				
+				border-left: 12px solid transparent;
+				border-right: 12px solid transparent;
+			
+			}
+
+div#image-stats-container {
+	
+	display: none;
+	
+	width: 100%;
+	height: 40px;
+	
+	background-color: aliceblue;
+	
+}
+	
+	div#image-stats-container.active {
+	
+		display: block;
+		
+	}
+
+	div#image-stats-container span#image-stats-inner {
+	
+		display: inline-block;
+		
+		position: relative;
+		left: 50%;
+	
+		width: 800px;
+		
+		margin-left: -400px;
+		
+		font-size: 20px;
+		line-height: 20px;
+	}
+	
+		div#image-stats-container span#image-stats-inner span {
+		
+			display: inline-block;
+		
+			padding: 10px;
+		
+			line-height: 20px;
+			font-size: 20px;
+			
+		}
+		
+		
+		div#image-stats-container span#image-stats-inner span#image-stats-pre {
+			
+			background-color: slategrey;
+			
+			margin-right: 20px;	
+			
+			font-weight: bold;
+			color: white;
+			
+		}
+
+div#option-stats-container {
+	
+	display: none;
+	
+	width: 100%;
+	
+	background-color: salmon;
+	
+}
+	
+	div#option-stats-container.active {
+	
+		display: block;
+		
+	}
+
+	div#option-stats-container div#option-stats-inner {
+	
+		display: inline-block;
+		
+		position: relative;
+		left: 50%;
+	
+		width: 800px;
+		
+		margin-left: -400px;
+		
+		font-size: 20px;
+		line-height: 20px;
+		color: white;
+		
+	}
+	
+		div#option-stats-container div#option-stats-inner span#option-stats-pre,
+		div#option-stats-container div#option-stats-inner span#option-stats-pre-nontitle {
+			
+			display: inline-block;
+			
+			margin-right: 20px;	
+			padding: 10px;
+			
+			
+			line-height: 20px;
+			font-size: 20px;
+			
+		}
+		
+			div#option-stats-container div#option-stats-inner span#option-stats-pre {
+			
+				background-color: indianred;
+			
+				font-weight: bold;
+				
+			}
+		
+		div#option-stats-container div#option-stats-inner div#option-stats section {
+		
+			padding: 10px;
+		
+		}
+		
+			div#option-stats-container div#option-stats-inner div#option-stats section header {
 			
 				font-size: 20px;
-				
 				margin-bottom: 10px;
 				
 			}
 			
-				div.content.query form div#galaxyImage input[name=galaxyImage] {
+			div#option-stats-container div#option-stats-inner div#option-stats section span {
+			
+				display: inline-block;
+			
+			}
+			
+			div#option-stats-container div#option-stats-inner div#option-stats section span.option-value-container {
+		
+				opacity: 0.4;
+		
+				width: 330px;
+				margin-left: 20px;
 				
-					position: absolute;
-					right: 0;
+				font-size: 15px;
+			
+			}
+					div#option-stats-container div#option-stats-inner div#option-stats section span.option-value-container.changed {
+		
+						opacity: 1.0;
 					
-					font-size: 15px;
+					}
+			
+					div#option-stats-container div#option-stats-inner div#option-stats section span.option-value-container span.option-name {
+		
+						width: 245px;
+						
+						font-weight: bold;
+					}
+					
+					div#option-stats-container div#option-stats-inner div#option-stats section span.option-value-container span.option-value {
+		
+						width: 75px;
+						
+					}
+	
+	div.content section {
+	
+		margin-bottom: 20px;
+	
+	}
+	
+		div.content section > header {
+				
+			position: relative;
+		
+			display: inline-block;
+			
+			height: 40px;
+			width: 100%;
+			
+			padding: 5px;
+			margin-bottom: 10px;
+			
+			border-bottom: 1px solid black;
+		
+			font-size: 30px;
+			
+		}
+		
+			div.content.select-image span#galaxy-image-text {
+			
+					display: inline-block;
+					
+					margin-bottom: 20px;
+					
+			}
+		
+			div.content.select-image div#galaxyImage-container {
+				
+				border-radius: 10px;
+				
+				background-color: #eee;
+				
+				cursor: pointer;
+			
+			}
+			
+				div.content.select-image div#galaxyImage-container input[name=galaxyImage] {
+				
+					padding: 10px;
+					
+					width: 740px;
 				
 				}
-		
-			div.content.query form div.option {
+			
+			div.content.options div#options-help-button {
+			
+				position: absolute;
+				right: 0;
+				
+				z-index: 1;
+				
+				padding: 8px;
+				
+				background-color: salmon;
+				
+				border-radius: 10px;
+				
+				font-size: 20px;
+				color: white;
+				
+				cursor: pointer;
+			
+			}
+			
+				div.content.options div#options-help-button:hover {
+				
+					opacity: 0.5;
+					
+				}
+			
+			div.content.options div.option {
 				
 				position: relative;
 				
@@ -94,7 +343,7 @@ div.content {
 				
 			}
 			
-				div.content.query form div.option label {
+				div.content.options div.option label {
 				
 					position: relative;
 					
@@ -105,7 +354,7 @@ div.content {
 					
 				}
 				
-				div.content.query form div.option input {
+				div.content.options div.option input {
 					
 					display: block;
 					
@@ -113,11 +362,11 @@ div.content {
 					
 					float: right;
 					
-					vertical-align: center;
+					vertical-align: middle;
 				
 				}
 			
-					div.content.query form div.option input[type=text] {
+					div.content.options div.option input[type=text] {
 			
 						width: 75px;
 						
@@ -129,7 +378,7 @@ div.content {
 						text-align: center;
 					}
 					
-				div.content.query form div.option div.tooltip {
+				div.content.options div.option div.tooltip {
 				
 					display: none;
 					position: absolute;
@@ -142,30 +391,13 @@ div.content {
 				
 				}
 				
-					div.content.query form div.option:hover div.tooltip {
+					div.content.options div.option:hover div.tooltip {
 					
 						display: block;
 					
 					}
 				
-				div.content.query form section > header {
-				
-					position: relative;
-				
-					display: inline-block;
-					
-					height: 40px;
-					width: 100%;
-					
-					padding: 5px;
-					margin-bottom: 10px;
-					
-					border-botttom: 1px solid black;
-				
-					font-size: 30px;
-				}
-				
-				div.content.query form section.twoCol {
+				div.content.options section.twoCol {
 				
 					position: relative;
 					
@@ -173,7 +405,7 @@ div.content {
 				
 				}
 				
-					div.content.query form section.twoCol div {
+					div.content.options section.twoCol div {
 					
 						position: relative;
 					
@@ -181,55 +413,48 @@ div.content {
 					
 					}
 					
-						div.content.query form section.twoCol div.align-left {
+						div.content.options section.twoCol div.align-left {
 						
 							float: left;
 							margin-left: 10px;
 							
 						}
 						
-						div.content.query form section.twoCol  div.align-right {
+						div.content.options section.twoCol  div.align-right {
 						
 							float: right;
 							margin-right: 10px;
 							
 						}
 						
-							div.content.query form section.twoCol div.align-left > div:nth-child(odd), 
-							div.content.query form section.twoCol div.align-right > div:nth-child(even),
-							div.content.query form section.twoCol div.align-left > div:nth-child(even) input[type=text], 
-							div.content.query form section.twoCol div.align-right > div:nth-child(odd) input[type=text] {
+							div.content.options section.twoCol div.align-left > div:nth-child(odd), 
+							div.content.options section.twoCol div.align-right > div:nth-child(even),
+							div.content.options section.twoCol div.align-left > div:nth-child(even) input[type=text], 
+							div.content.options section.twoCol div.align-right > div:nth-child(odd) input[type=text] {
 								
 								background-color: #ddd;
 								
 							}
 	
-	
-			div.content.query section#isFits div.option#convert-FITS {
-			
-				display: none;
-			
-			} 
-	
-			div.content.query section#mainOptions section.level {
+			div.content.options section#mainOptions section.level {
 			
 				margin-bottom: 0;
 			
 			}	
 			
-				div.content.query section#mainOptions section.level.active {
+				div.content.options section#mainOptions section.level.active {
 			
 					margin-bottom: 10px;
 				
 				}
 				
-				div.content.query section#mainOptions section.level:last-child {
+				div.content.options section#mainOptions section.level:last-child {
 				
 					margin-bottom: 0;
 				
 				}
 			
-				div.content.query section#mainOptions section.level div.level-header {
+				div.content.options section#mainOptions section.level div.level-header {
 				
 					position: relative;
 					width: 100%;
@@ -239,7 +464,7 @@ div.content {
 					border-radius: 10px;
 				}
 				
-					div.content.query section#mainOptions section.level div.level-header:hover {
+					div.content.options section#mainOptions section.level div.level-header:hover {
 					
 						background-color: #ddd;
 						
@@ -247,26 +472,26 @@ div.content {
 						
 					}
 				
-					div.content.query section#mainOptions section.level.active div.level-header {
+					div.content.options section#mainOptions section.level.active div.level-header {
 					
 						margin-bottom: 10px;
 					
 					}
 									
-					div.content.query section#mainOptions section.level div.level-header > *,
-					div.content.query section#mainOptions section.level div.level-header {
+					div.content.options section#mainOptions section.level div.level-header > *,
+					div.content.options section#mainOptions section.level div.level-header {
 					
 						cursor: pointer;
 					
 					}
 					
-					div.content.query section#mainOptions section.level div.level-header > * {
+					div.content.options section#mainOptions section.level div.level-header > * {
 					
 						padding: 5px;
 					
 					}
 					
-					div.content.query section#mainOptions section.level div.level-header header{
+					div.content.options section#mainOptions section.level div.level-header header{
 				
 						display: inline-block;
 					
@@ -274,28 +499,28 @@ div.content {
 						
 					}
 									
-					div.content.query section#mainOptions section.level div.level-header span.expander {
+					div.content.options section#mainOptions section.level div.level-header span.expander {
 					
 						display: none;
 						
-						vertical-align: center;
+						vertical-align: middle;
 						
 					}
 					
-						div.content.query section#mainOptions section.level:not(.active) div.level-header span.expander.open,
-						div.content.query section#mainOptions section.level.active div.level-header span.expander.close {
+						div.content.options section#mainOptions section.level:not(.active) div.level-header span.expander.open,
+						div.content.options section#mainOptions section.level.active div.level-header span.expander.close {
 			
 							display: inline-block;
 		
 						}
 										
-				div.content.query section#mainOptions section.level:not(#easy) div:not(.level-header){
+				div.content.options section#mainOptions section.level:not(#easy) div:not(.level-header){
 				
 					display: none;
 					
 				}
 				
-					div.content.query section#mainOptions section.level:not(#easy).active div:not(.level-header)
+					div.content.options section#mainOptions section.level:not(#easy).active div:not(.level-header)
 					{
 					
 						display: block;
@@ -303,64 +528,267 @@ div.content {
 					}
 			
 		
-		div.content.query section#submit button {
+		div.content.options div#options-next {
 		
 			position: relative;
 			
 			left: 50%;
 			
 			height: 40px;
-			width: 200px;
+			width: 800px;
 		
 			background: none;
 			
 			margin-top: 20px;
-			margin-left: -100px;
+			margin-left: -400px;
 			
-			border: none;
 			border-radius: 10px;
 			
-			font-family: inherit;
 			font-size: 25px;
 			line-height: 40px;
-			
-			vertical-align: center;
-			
-		}
-		
-			div.content.query section#submit button:hover{
-			
-				cursor: pointer;
-				
-				background-color: #ddd;
-				
-				color: #fff;
-			}
-	
-		div.content.process span {
-			
-			display: inline-block;
-			
-			width: 100%;
-
+			background-color: #ddd;
+			font-weight: bold;
 			text-align: center;
 			
 		}
+		
+			div.content.options div#options-next:hover {
 			
-			div.content.process span#procMsg {
+				cursor: pointer;
+				
+				background-color: white;
+				
+				color: black;
+			}
+	
+		div.content.options-help div#options-back-button {
 			
-				margin: 15px 0 5px 0;
+			position: absolute;
+			right: 0;
 			
+			z-index: 1;
+			
+			padding: 8px;
+			
+			background-color: salmon;
+			
+			border-radius: 10px;
+			
+			font-size: 20px;
+			color: white;
+			
+			cursor: pointer;
+		
+		}
+		
+			div.content.options-help div#options-back-button:hover {
+			
+				opacity: 0.5;
+				
+			}
+	
+		div.content.options-help div.option-help-listing {
+		
+			margin: 20px 0;
+		
+		}
+		
+			div.content.options-help div.option-help-listing:hover {
+		
+				background-color: #eee;
+			
+			}
+		
+			div.content.options-help div.option-help-listing header.option-help-name {
+			
+				display: inline-block;
 				font-size: 20px;
-				line-height: 20px;
-				
+				padding: 10px;
+				width: 280px;
+				vertical-align: top;
+
 			}
 			
-			div.content.process span#procCrt {
+			div.content.options-help div.option-help-listing div.option-help-text {
 			
-				margin: 5px 0 15px 0;
+				display: inline-block;
+				width: 420px;
+				padding: 10px;
 			
-				font-size: 15px;
-				line-height: 15px;
+			}
+		
+		div.content.process div#proc-animation {
+		
+			position: relative;
+		
+			display: inline-block;
+			
+			vertical-align: top;
+			
+			width: 70px;
+			height: 70px;
+			
+			margin-right: 10px;
+		
+		}
+			
+			div.content.process div#proc-animation img#galaxy {
+			
+				position: absolute;
+				left: 50%;
+				top: 50%;
+			
+				width: 50px;
+				height: 50px;
+				
+				margin-left: -25px;
+				margin-top: -25px;
+				
+				-webkit-animation-duration: 2s;
+				-webkit-animation-name: spin;
+				-webkit-animation-iteration-count: infinite;
+				-webkit-animation-timing-function: linear;
+				
+				-moz-animation-duration: 2s;
+				-moz-animation-name: spin;
+				-moz-animation-iteration-count: infinite;
+				-moz-animation-timing-function: linear;
+				
+				-o-animation-duration: 2s;
+				-o-animation-name: spin;
+				-o-animation-iteration-count: infinite;
+				-o-animation-timing-function: linear;
+				
+				animation-duration: 2s;
+				animation-name: spin;
+				animation-iteration-count: infinite;
+				animation-timing-function: linear;
+			}
+			
+			@-webkit-keyframes spin {
+				from { 
+					-webkit-transform: rotate(0deg);
+					}
+				to {
+					-webkit-transform: rotate(360deg);
+					}
+			}
+			
+			@-moz-keyframes spin {
+				from { 
+					-moz-transform: rotate(0deg);
+					}
+				to {
+					-moz-transform: rotate(360deg);
+					}
+			}
+			
+			@-o-keyframes spin {
+				from { 
+					-o-transform: rotate(0deg);
+					}
+				to {
+					-o-transform: rotate(360deg);
+					}
+			}
+			
+			@keyframes spin {
+				from { 
+					transform: rotate(0deg);
+					}
+				to {
+					transform: rotate(360deg);
+					}
+			}
+			
+		div.content.process div#text-container {
+		
+			display: inline-block;
+			
+		}
+		
+			div.content.process div#text-container span {
+				
+				display: block;
+				
+				text-align: left;
 				
 			}
+				
+				div.content.process div#text-container span#procMsg {
+				
+					margin: 15px 0 5px 0;
+				
+					font-size: 20px;
+					line-height: 20px;
+					font-weight: bold;
+					
+				}
+				
+				div.content.process div#text-container span#procCrt {
+				
+					margin: 5px 0 15px 0;
+				
+					font-size: 15px;
+					line-height: 15px;
+					
+				}
+
+div.pageFlipper {
+	
+	height: 40px;
+	width: 800px;
+	
+	padding: 20px 0;
+	
+}
+
+	div.pageFlipper > div {
+	
+		display: inline-block;
+	
+		height: 20px;
+		width: 370px;
+		
+		padding: 10px 0;
+		
+		border-radius: 10px;
+		
+		font-weight: bold;
+		font-size: 20px;
+		line-height: 20px;
+		color: white;
+		
+		vertical-align: middle;
+		text-align: center;
+		
+		cursor: pointer;
+	
+	}
+	
+		div.pageFlipper > div.nextPage {
+		
+			background-color: olivedrab;
+			margin-left: 40px;
+		
+		}
+		
+		div.pageFlipper > div.prevPage {
+		
+			background-color: firebrick;
+			
+		}
+		
+		div.pageFlipper > div:only-child {
+		
+			margin: 0;
+			width: 800px;
+		
+		}
+		
+		div.pageFlipper > div:hover {
+		
+			opacity: 0.5;
+			
+		}
+		

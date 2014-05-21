@@ -82,7 +82,7 @@ if (!move_uploaded_file($_FILES['galaxyImage']['tmp_name'], $imageData["file"]))
 $optionString .= 'export MCR_CACHE_ROOT=/tmp && /home/wayne/bin/SpArcFiRe ';
 
 // if the image is a FITS, append FITS options
-if ($_POST["isFits"]["convert-FITS"] == "true"){
+if ($imageData["ext"] == "fits" || $imageData["ext"] == "fit"){
 	$optionString .= " -convert-FITS -p ";
 	foreach(array("brightnessQuartileForASinhAlpha", "brightnessQuartileForASinhBeta", "asinhApplications")
 		as $fitsOpt)
@@ -104,7 +104,7 @@ foreach($_POST['mainOptions'] as $option => $value)
 $exitCode = 0;
 $passArray = array();
 
-exec($optionString." &>".$imageData['id'].".log", $passArray, $exitCode);
+exec($optionString." &>".$imageData['id']."/error.log", $passArray, $exitCode);
 
 /* success conditions go past here. success is indicated by exit_code
  * if exit_code is equal to 0, this should indicate proper operation of
@@ -112,9 +112,10 @@ exec($optionString." &>".$imageData['id'].".log", $passArray, $exitCode);
 
 // if running SpArcFire was successful, the exit_code should be 0
 if ($exitCode)
-	returnProcessingState(false, "Image could not be processed.", 
+	returnProcessingState(true, "Image could not be processed.", 
 			array(
-					"command" => $optionString
+					"url" => "/results?query=".$imageData["id"],
+					"query" => $optionString
 			));
 else {
 	

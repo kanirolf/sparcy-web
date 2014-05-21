@@ -1,11 +1,33 @@
-@charset UTF-8;
+html, body {
+	
+	height: 100%;
+	width: 100%;
+	
+	margin: 0;
+	padding: 0;
+	
+}
+
+header {
+	
+	font-family: 'Roboto Condensed', Impact, fantasy;
+	font-weight: 300;
+	
+}
+
+footer {
+	
+	padding: 20px 40px;
+	
+}
+
 
 body {
 	
-	background-color: #dce0ed;
+	background-color: #eee;
 	
-	color: #543764;
-	font-family: 'Dosis', Helvetica, Arial, 'sans-serif';		
+	color: black;
+	font-family: 'Source Sans Pro', Helvetica, Arial, 'sans-serif';		
 	
 }
 
@@ -21,9 +43,33 @@ a {
 		
 	}
 
-div.content {
+div#content-container {
+	
+	width: 100%;
+	
+	padding: 20px 0;
 	
 	background-color: white;
-	margin-bottom: 100px;
 	
 }
+
+	div#content-container div.content {
+	
+		display: none;
+		
+		position: relative;
+		left: 50%;
+	
+		width: 800px;
+		margin: 0 0 0 -400px;
+				
+		background-color: white;
+		
+	}
+
+
+		div#content-container div.content.active {
+		
+			display: block;
+		
+		}

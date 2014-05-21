@@ -1,18 +1,13 @@
 <div id="sparcfire-top-nav">
 	<header>
-		<p>SpArcFiRe <b>WebUI</b></p>
+		SpArcFiRe <b>WebUI</b> <span id="beta-tag">beta</span>
 	</header>
-	<nav id="steps">
+	<nav id="pages">
 		<a class="query" href="/query">
-			create new query
+			PROCESS NEW IMAGE
 		</a>
-		&gt;
-		<span class="process">
-			process
-		</span>
-		&gt;
 		<a class="results" href="/results">
-			results
+			RECOVER PREVIOUS RESULT
 		</a>
 	</nav>
 </div>

@@ -1,52 +1,71 @@
-@CHARSET "UTF-8";
-
-#sparcfire-top-nav header {
+#sparcfire-top-nav {
 	
-	height: 100px;
 	width: 100%;
+	
+	background-color: slateblue;
 	
 }
 
-	#sparcfire-top-nav header p {
+#sparcfire-top-nav header {
+	
+	display: inline-block;
+	
+	vertical-align: top;
+	
+	height: 40px;
+	
+	padding: 15px 40px 25px 40px;
+	margin: 0;	
+	
+	font-family: 'Dosis', Impact, fantasy;
+	color: white;
+	font-size: 40px;
+	line-height: 50px;
+	
+}
+
+	#sparcfire-top-nav header span#beta-tag {
+	
+		font-size: 20px;
+		
+	}
+#sparcfire-top-nav nav#pages {
+	
+	display: inline-block;
+	
+	vertical-align: top;
+	
+	height: 40px;
+	
+	padding: 20px 40px;
+	
+	text-align: center;	
+	
+}
+
+	#sparcfire-top-nav nav#pages a {
 	
 		display: inline-block;
 		
-		padding: 20px 0;
-		margin: 0;
+		padding: 5px 10px;
+		margin: 0 10px 0 10px;
 		
-		width: 100%;
+		background-color: slateblue;
 		
-		font-size: 60px;
-		line-height: 60px;
-		text-align: center;
-	}
-
-#sparcfire-top-nav nav#steps {
-	
-		width: 100%;
-		height: 70px;	
-		
-		text-align: center;
-		
-		font-size: 25px;
+		font-family: "Roboto Condensed", Arial, sans-serif;
+		font-size: 20px;
 		line-height: 30px;
+		font-weight: 300;
+		color: white;
+		text-transform: uppercase;
+		
 		
 	}
 	
-		#sparcfire-top-nav nav#steps a, #sparcfire-top-nav nav#steps span {
+		#sparcfire-top-nav nav#pages a.active,
+		#sparcfire-top-nav nav#pages a:hover {
 		
-			display: inline-block;
-			
-			padding: 10px 10px 30px 10px;
-			margin: 0 10px 0 10px;
-			
-		}
+			background-color: white;
+			color: slateblue;
 		
-			#sparcfire-top-nav nav#steps a.active,
-			#sparcfire-top-nav nav#steps span.active,
-			#sparcfire-top-nav nav#steps a:hover {
-			
-				background-color: #3E508C;
-				color: white;
-			
-			} 
+		} 
