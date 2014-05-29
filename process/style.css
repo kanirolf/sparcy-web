@@ -1,0 +1,186 @@
+div#meta-container {
+	
+	width: 100%;
+	
+	background-color: lightgrey;
+
+}
+	div#meta-container div#meta-inner {
+	
+		position: relative;
+		left: 50%;
+	
+		width: 800px;
+		
+		margin-left: -400px;
+		
+	}
+	
+	div#meta-container div#meta-inner span,
+	div#meta-container div#meta-inner a {
+	
+		display: inline-block;
+		
+		padding: 15px;
+		
+	}
+	
+		div#meta-container div#meta-inner * {
+		
+			vertical-align: middle;
+			
+		}
+		
+		div#meta-container div#meta-inner :not(#id) {
+			
+			font-weight: bold;
+			
+		}
+		
+		div#meta-container div#meta-inner span#id-label {
+		
+			width: 70px;
+		
+		}
+		
+		div#meta-container div#meta-inner span#id {
+		
+			width: 480px;
+		
+			background-color: #eee;
+			
+		}
+		
+		div#meta-container div#meta-inner a#download {
+
+			margin-left: 20px;
+			
+			background-color: salmon;
+			
+			color: white;
+			
+			
+		}
+		
+			div#meta-container div#meta-inner a#download:hover {
+				
+				background-color: firebrick;
+			
+			}
+				
+div.content.process div#proc-animation {
+		
+	position: relative;
+
+	display: inline-block;
+	
+	vertical-align: top;
+	
+	width: 70px;
+	height: 70px;
+	
+	margin-right: 10px;
+
+}
+	
+	div.content.process div#proc-animation img#galaxy {
+	
+		position: absolute;
+		left: 50%;
+		top: 50%;
+	
+		width: 50px;
+		height: 50px;
+		
+		margin-left: -25px;
+		margin-top: -25px;
+		
+		-webkit-animation-duration: 2s;
+		-webkit-animation-name: spin;
+		-webkit-animation-iteration-count: infinite;
+		-webkit-animation-timing-function: linear;
+		
+		-moz-animation-duration: 2s;
+		-moz-animation-name: spin;
+		-moz-animation-iteration-count: infinite;
+		-moz-animation-timing-function: linear;
+		
+		-o-animation-duration: 2s;
+		-o-animation-name: spin;
+		-o-animation-iteration-count: infinite;
+		-o-animation-timing-function: linear;
+		
+		animation-duration: 2s;
+		animation-name: spin;
+		animation-iteration-count: infinite;
+		animation-timing-function: linear;
+	}
+	
+	@-webkit-keyframes spin {
+		from { 
+			-webkit-transform: rotate(0deg);
+			}
+		to {
+			-webkit-transform: rotate(360deg);
+			}
+	}
+	
+	@-moz-keyframes spin {
+		from { 
+			-moz-transform: rotate(0deg);
+			}
+		to {
+			-moz-transform: rotate(360deg);
+			}
+	}
+	
+	@-o-keyframes spin {
+		from { 
+			-o-transform: rotate(0deg);
+			}
+		to {
+			-o-transform: rotate(360deg);
+			}
+	}
+	
+	@keyframes spin {
+		from { 
+			transform: rotate(0deg);
+			}
+		to {
+			transform: rotate(360deg);
+			}
+	}
+			
+div.content.process div#proc-anim-adj-container {
+
+	display: inline-block;
+	
+}
+
+	div.content.process div#proc-anim-adj-container span {
+		
+		display: block;
+		
+		text-align: left;
+		
+	}
+		
+		div.content.process div#proc-anim-adj-container span#procMsg {
+		
+			margin: 15px 0 5px 0;
+		
+			font-size: 20px;
+			line-height: 20px;
+			font-weight: bold;
+			
+		}
+		
+		div.content.process div#proc-anim-adj-container span#procCrt {
+		
+			margin: 5px 0 15px 0;
+		
+			font-size: 15px;
+			line-height: 15px;
+			
+		}
