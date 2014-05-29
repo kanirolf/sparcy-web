@@ -44,7 +44,7 @@ $(document).ready(function(){
 					$(window).bind("beforeunload", function(){return "The image has not finished processing.";});
 					var queryData = new FormData($("form")[0]);
 					$.ajax({
-						url: "/process/index.php",
+						url: "/process/preprocess.php",
 						type: "POST",
 						data: queryData,
 						async: true,
@@ -91,9 +91,9 @@ $(document).ready(function(){
 
 // select-image
 	
-	/* If the selected image is a .png, .jpg, .fit or .fits, change to the
-	 * "options" menu. Otherwise, stay on the select-image menu.
-	 */
+	// If the selected image is a .png, .jpg, .fit or .fits, change to the
+	// "options" menu. Otherwise, stay on the select-image menu.
+	
 	
 	$("[name=galaxyImage]").change(function(){
 		if (!/.((pn|jp)g|fi?ts?)$/.test(this.value)){

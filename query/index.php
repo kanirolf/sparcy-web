@@ -84,7 +84,7 @@ $levels = array("easy", "advanced", "expert");
 					<div class="arrow"></div>
 				</li>
 				<li class="step process">
-					process
+					preprocessing
 					<div class="arrow"></div>
 				</li>
 			</ul>
@@ -207,8 +207,8 @@ $levels = array("easy", "advanced", "expert");
 					<img src="proc.png" id="galaxy" alt="" />
 				</div>
 				<div id="text-container">
-					<span id="procMsg">processing image...</span>
-					<span id="procCrt">(this could take half a minute to two minutes depending upon the image; please be patient)</span>
+					<span id="procMsg">preprocessing image...</span>
+					<span id="procCrt">creating folders, transferring files for processing...</span>
 				</div>
 			</div>
 			<div class="content options-help">
