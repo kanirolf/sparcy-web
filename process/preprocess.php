@@ -1,5 +1,11 @@
 <?php include $_SERVER["DOCUMENT_ROOT"]."/php/includes.php";
 
+function returnProcessingState($success, $status, $data=array()){
+	$result = json_encode(array("success" => $success,"status" => $status,"data" => $data));
+	echo $result;
+	die();
+}
+
 /* preprocessing
  * 
  * This script will:
@@ -8,37 +14,7 @@
  * 2 create a directory and subdirectories for the file
  * 3 move the file into that directory
  * 
- * The script will respond with a json object in all cases, structured as:
- * 
- * {
- * 		"success" : bool,
- * 		"status" : str,
- * 		"data" : {
- * 			("key" : "value")*
- * 		}
- * }
- * 		
- * In the case that any of the steps fails, the JSON status will be false. If 
- * preprocessing is successful, the data sent to this server is saved to the session.
- * 
  */
-
-// define a function to return all relevant variables on process
-// failure or success
-
-function returnProcessingState($success, $status, $data=array()){
-	$result = json_encode(array("success" => $success,"status" => $status,"data" => $data));
-	echo $result; 
-	die();
-}
-
-/* store image
- * 
- * The image will be stored in the /tmp directory under a directory name 
- * generated as the md5 hash of the galaxy name and the current timestamp.
- * 
- */
-
 
 // step 1: check for image file existence
 
@@ -84,8 +60,6 @@ if (!move_uploaded_file($_FILES['galaxyImage']['tmp_name'], $imageData["file"]))
 
 $_SESSION["imageData"] = $imageData;
 setcookie(session_name(), '', time() + 3600);
-returnProcessingState(true, "Can move on to actual processing", array(
-		"id" => $imageData["id"]
-	));
+returnProcessingState(true, "Can move on to actual processing");
 
 ?>
