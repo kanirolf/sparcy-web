@@ -1,4 +1,6 @@
-<?php include $_SERVER["DOCUMENT_ROOT"]."/php/includes.php";
+<?php 
+
+//include $_SERVER["DOCUMENT_ROOT"].'/php/includes.php';
 
 function returnProcessingState($success, $status, $data=array()){
 	$result = json_encode(array("success" => $success,"status" => $status,"data" => $data));
@@ -16,10 +18,17 @@ function returnProcessingState($success, $status, $data=array()){
  * 
  */
 
+// redirect non-POST requests
+
+if ($_SERVER['REQUEST_METHOD'] != 'POST'){
+	header('Location: /');
+	die();
+}
+
 // step 1: check for image file existence
 
 if (!isset($_FILES["galaxyImage"]))
-	returnProcessingState(false, "There was an issue with uploading the image file.");
+	returnProcessingState(false, 'There was an issue with uploading the image file.');
 
 // define variables detailing image locations and name
 
@@ -58,8 +67,16 @@ if (!move_uploaded_file($_FILES['galaxyImage']['tmp_name'], $imageData["file"]))
 
 // fin: 
 
-$_SESSION["imageData"] = $imageData;
-setcookie(session_name(), '', time() + 3600);
-returnProcessingState(true, "Can move on to actual processing");
+$status = fopen($imageData["location"].'/info.json', 'w');
+fwrite($status, json_encode(array(		
+	"status" => 'preprocessed',
+	"data" => $imageData,
+	"options" => $_POST
+)));
+fclose($status);
+
+returnProcessingState(true, "Can move on to actual processing", array(
+	"url" => '/process?id='.$imageData["id"]
+));
 
 ?>
