@@ -1,1 +1,1 @@
-<footer> <span id="info-wrapper">Please contact Wayne Hayes <a href="mailto:whayes@uci.edu">(whayes@uci.edu)</a> for questions or comments.  <a href="http://arxiv.org/abs/1402.1910">See our paper here</a> for details about SpArcFiRe.</span></footer>
+<footer> <span id="info-wrapper">SpArcFiRe was written by Darren R. Davis under the Ph.D. supervision of Wayne B. Hayes at U.C. Irvine. <br /> Please contact Wayne B. Hayes (whayes@uci.edu) for questions, comments, or bugs.</span></footer>
